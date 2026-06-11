@@ -456,6 +456,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-pfl-logo {
   max-width: clamp(280px, 36vw, 600px);
+  margin-top: 40px;
   filter: drop-shadow(0 0 40px rgba(255, 4, 4, 0.3));
   opacity: 0;
   animation: heroFade 1.2s 0.6s forwards;
@@ -2986,6 +2987,16 @@ a.fighter-ig:hover {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 a.innovation-tile { cursor: pointer; }
+.innovation-tile::after{
+  content:"\2197"; /* up-right arrow */
+  position:absolute; right:12px; bottom:12px; z-index:6;
+  width:34px; height:34px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--pfl-red); color:#fff; font-size:17px; font-weight:700;
+  box-shadow:0 4px 14px rgba(255,4,4,.5);
+  transition:transform .2s ease, background .2s;
+}
+.innovation-tile:hover::after{ transform:translateY(-2px) scale(1.06); background:var(--pfl-red-bright); }
 .innovation-tile:hover {
   border-color: var(--pfl-red);
   transform: translateY(-6px);
@@ -5059,102 +5070,87 @@ a.innovation-tile { cursor: pointer; }
 /* ─── Stats row ─── */
 #slide-dist .dist-stats {
   display: flex;
-  gap: 2.4rem;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 1.4rem;
+  gap: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding-top: 1.7rem;
 }
 #slide-dist .dist-stat .num {
   font-family: var(--font-display);
-  font-size: 3.4rem;
+  font-size: 4.6rem;
   line-height: 1;
   color: var(--pfl-red);
   letter-spacing: 0.02em;
 }
 #slide-dist .dist-stat .lbl {
   font-family: var(--font-condensed);
-  font-size: 0.82rem;
-  letter-spacing: 0.22em;
+  font-size: 1.0rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  margin-top: 0.45rem;
-  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  margin-top: 0.5rem;
+  font-weight: 700;
 }
 
-/* ─── Big readout panel ─── */
+/* ─── Broadcaster readout — matches reference: left text + big flag right ─── */
 #slide-dist .dist-readout {
   display: flex;
-  gap: 1.2rem;
-  align-items: stretch;
-  background: linear-gradient(135deg, rgba(255, 4, 4, 0.08) 0%, rgba(10, 26, 74, 0.6) 100%);
-  border: 1px solid rgba(255, 4, 4, 0.35);
-  border-left: 4px solid var(--pfl-red);
-  border-radius: 10px;
-  padding: 1.1rem 1.3rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.03) inset;
-}
-#slide-dist .ro-flag {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 0.4rem;
-  font-size: 28px;
-  display: flex;
+  gap: 1.4rem;
   align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(10, 26, 74, 0.92) 0%, rgba(5, 14, 40, 0.92) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  min-height: 132px;
 }
 #slide-dist .ro-body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  justify-content: center;
+  gap: 0.35rem;
   min-width: 0;
 }
 #slide-dist .ro-label {
   font-family: var(--font-condensed);
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
+  font-size: 0.82rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  font-weight: 700;
+  color: rgba(150, 175, 230, 0.85);
 }
 #slide-dist .ro-country {
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  line-height: 1;
+  font-size: 3.1rem;
+  line-height: 0.98;
   letter-spacing: 0.01em;
   color: var(--pfl-white);
   text-transform: uppercase;
-  margin: 0.15rem 0 0.5rem;
+  margin: 0.1rem 0 0.25rem;
 }
-#slide-dist .ro-broadcaster-row,
-#slide-dist .ro-territory-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-}
-#slide-dist .ro-broadcaster-label,
-#slide-dist .ro-territory-label {
-  font-family: var(--font-condensed);
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  flex-shrink: 0;
-}
+#slide-dist .ro-partner-line { display: flex; }
 #slide-dist .ro-broadcaster {
   font-family: var(--font-condensed);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--pfl-red);
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: #fff;
 }
-#slide-dist .ro-territory {
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.85);
+/* Big flag on the middle-right */
+#slide-dist .ro-flag {
+  flex-shrink: 0;
+  width: 132px;
+  height: 88px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 96px;
+  line-height: 1;
+  overflow: hidden;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.5));
 }
 
 /* ─── Search box inside readout ─── */
@@ -5738,6 +5734,75 @@ a.innovation-tile { cursor: pointer; }
   opacity:1; visibility:visible; pointer-events:auto; transform:scale(1);
   transition:opacity .35s ease, transform .35s ease;
 }
+
+/* ===== BETTING POP-UP: distinct "slide within a slide" modal ===== */
+#slide-betting.explore-page{
+  background:rgba(2,7,23,.74);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  overflow:visible;
+}
+/* hide the full-bleed slide chrome — the card carries its own look */
+#slide-betting > .slide-bg, #slide-betting > .slide-grain, #slide-betting > .brand-mark{ display:none !important; }
+/* the scroll wrapper becomes the floating card */
+#slide-betting .betting-scroll{
+  position:relative; inset:auto;
+  width:min(1200px, 94vw); height:min(840px, 90vh);
+  margin:0; padding:30px 44px 38px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(900px 440px at 80% -10%, rgba(255,4,4,.12), transparent 60%),
+    radial-gradient(800px 460px at 6% 112%, rgba(5,35,131,.30), transparent 55%),
+    linear-gradient(180deg, #0a1430, #060d22);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.7),
+    0 0 0 1px rgba(255,255,255,.04) inset;
+  overflow:hidden;
+  display:flex; align-items:stretch; justify-content:center;
+  animation:betPopIn .4s cubic-bezier(.2,.8,.2,1);
+}
+/* red accent strip + stacked-card shadow behind to read as a layered slide */
+#slide-betting .betting-scroll::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--pfl-red), var(--pfl-red-bright)); z-index:5;
+}
+#slide-betting .betting-scroll::after{
+  content:""; position:absolute; inset:0; border-radius:24px; z-index:-1;
+  transform:translate(14px, 16px);
+  background:rgba(8,16,40,.5); border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+@keyframes betPopIn{ from{ opacity:0; transform:translateY(18px) scale(.98);} to{ opacity:1; transform:none;} }
+/* small "slide within a slide" header tag */
+#slide-betting .bet-pop-tag{
+  position:absolute; top:18px; left:44px; z-index:8;
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-condensed); font-weight:800; font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(150,175,230,.9);
+}
+#slide-betting .bet-pop-tag::before{ content:""; width:22px; height:2px; background:var(--pfl-red); display:inline-block; }
+/* back button becomes a close control, top-right of the card */
+#slide-betting .explore-back{
+  top:16px; right:18px; left:auto; z-index:9;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+  width:auto; padding:9px 16px;
+}
+#slide-betting .explore-back:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
+/* hide the full-bleed eyebrow inside the modal */
+#slide-betting > .eyebrow{ display:none !important; }
+/* content sits below the tag/back header row */
+#slide-betting .betting-scroll .bet-deck{ padding-top:30px; }
+/* compact title + phone so the pop-up fits its card and feels lighter */
+#slide-betting.explore-page .bet-title{ font-size:clamp(30px,3.2vw,48px) !important; }
+#slide-betting.explore-page .bet-sub{ font-size:clamp(13px,1vw,15px) !important; margin-top:10px !important; }
+#slide-betting.explore-page .grid{ margin-top:14px !important; gap:44px !important; }
+#slide-betting.explore-page .phone{ width:248px !important; height:500px !important; }
+#slide-betting.explore-page .feature{ padding:11px 18px !important; }
+#slide-betting.explore-page .feature h3{ font-size:20px !important; }
+#slide-betting.explore-page .feature p{ font-size:13px !important; line-height:1.4 !important; }
+#slide-betting.explore-page .powered{ padding:12px 18px !important; }
+#slide-betting.explore-page .disclaimer{ position:static !important; margin-top:10px !important; text-align:center; }
 .explore-back{
   position:absolute; top:30px; left:6vw; z-index:240;
   display:inline-flex; align-items:center; gap:6px;
@@ -5770,18 +5835,19 @@ a.innovation-tile { cursor: pointer; }
 .eg-point{ max-width:240px; }
 .eg-point .epn{ font-family:var(--font-display); font-size:34px; color:var(--pfl-red); line-height:1; }
 .eg-point .epl{ font-family:var(--font-condensed); font-weight:700; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-top:8px; line-height:1.35; }
-/* Explore button on content tiles */
-.content-tile{ cursor:pointer; }
+/* Explore button on content tiles — always visible, bottom-right */
+.content-tile{ cursor:pointer; position:relative; }
 .ct-explore{
-  position:absolute; left:50%; bottom:18px; transform:translateX(-50%) translateY(8px);
-  z-index:5; opacity:0; pointer-events:none;
-  display:inline-flex; align-items:center; gap:7px;
+  position:absolute; right:12px; bottom:12px;
+  z-index:5; opacity:1; pointer-events:auto;
+  display:inline-flex; align-items:center; gap:6px;
   background:var(--pfl-red); color:#fff;
-  font-family:var(--font-condensed); font-weight:800; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-  padding:9px 18px; border-radius:999px; white-space:nowrap;
-  transition:opacity .25s ease, transform .25s ease, background .2s;
+  font-family:var(--font-condensed); font-weight:800; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+  padding:7px 14px; border-radius:999px; white-space:nowrap; border:none; cursor:pointer;
+  box-shadow:0 4px 14px rgba(255,4,4,.45);
+  transition:transform .2s ease, background .2s;
 }
-.content-tile:hover .ct-explore{ opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+.content-tile:hover .ct-explore{ transform:translateY(-2px); }
 .ct-explore:hover{ background:var(--pfl-red-bright); }
 .ct-explore .ar{ font-size:14px; }
 
@@ -5809,6 +5875,7 @@ a.innovation-tile { cursor: pointer; }
     <button class="nav-pill" data-target="6">Events</button>
     <button class="nav-pill" data-target="7">Distribution</button>
     <button class="nav-pill" data-target="8">Partnership</button>
+    <button class="nav-pill" data-target="13">End</button>
   </div>
 </nav>
 
@@ -6711,23 +6778,12 @@ a.innovation-tile { cursor: pointer; }
     <div class="dist-left">
       <!-- Bigger broadcaster readout — sticks on click, updates on hover, includes search -->
       <div class="dist-readout" id="distReadout">
-        <div class="ro-flag" id="roFlag"></div>
         <div class="ro-body">
-          <div class="ro-label">Selected market</div>
+          <div class="ro-label">Broadcast Market</div>
           <div class="ro-country" id="roCountry">United States</div>
-          <div class="ro-broadcaster-row">
-            <span class="ro-broadcaster-label">Broadcast partner</span>
-            <span class="ro-broadcaster" id="roBroadcaster">ESPN</span>
-          </div>
-          <div class="ro-territory-row">
-            <span class="ro-territory-label">Territory</span>
-            <span class="ro-territory" id="roTerritory">U.S. / Canada Media Rights</span>
-          </div>
-          <div class="ro-search-wrap">
-            <input type="text" class="ro-search" id="roSearch" placeholder="Search markets…" autocomplete="off" spellcheck="false">
-            <div class="ro-search-results" id="roSearchResults"></div>
-          </div>
+          <div class="ro-partner-line"><span class="ro-broadcaster" id="roBroadcaster">ESPN</span></div>
         </div>
+        <div class="ro-flag" id="roFlag"></div>
       </div>
 
       <div class="dist-stats">
@@ -6998,7 +7054,6 @@ a.innovation-tile { cursor: pointer; }
 <!-- SLIDE — PFL BETTING (bet365 second-screen concept) -->
 <!-- ============================================================ -->
 <section class="explore-page" id="slide-betting">
-  <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
   <div class="slide-bg darker"></div>
   <div class="slide-grain"></div>
   <div class="brand-mark">
@@ -7007,6 +7062,8 @@ a.innovation-tile { cursor: pointer; }
   </div>
   <div class="eyebrow">Product &amp; Tech &middot; Betting</div>
   <div class="betting-scroll">
+  <span class="bet-pop-tag">Explore · Betting Data</span>
+  <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
 <div class="bet-deck">
 
   <div class="bet-head">
@@ -7638,7 +7695,7 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     const roFlag = document.getElementById('roFlag');
     const roCountry = document.getElementById('roCountry');
     const roBroadcaster = document.getElementById('roBroadcaster');
-    const roTerritory = document.getElementById('roTerritory');
+    const roTerritory = null;
     const searchInput = document.getElementById('roSearch');
     const searchResults = document.getElementById('roSearchResults');
     if (!svg || !gratLayer || !cLayer || !window.WORLD_COUNTRIES) return;
@@ -7928,7 +7985,6 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
       if (roFlag) roFlag.textContent = partner.flag || '\uD83C\uDF10'; // globe emoji fallback
       roCountry.textContent = displayName;
       roBroadcaster.textContent = partner.b || 'No partner yet';
-      roTerritory.textContent = partner.terr || '—';
     }
 
     function render() { buildGraticule(); buildCountries(); }
