@@ -4789,8 +4789,8 @@ a.innovation-tile { cursor: pointer; }
 }
 #slide-tour .tcard:hover,
 #slide-tour .tcard.expanded {
-  flex-basis: 360px;
-  width: 360px;
+  flex-basis: 384px;
+  width: 384px;
   transform: translateY(-6px);
   border-color: var(--pfl-red);
   box-shadow: 0 12px 40px rgba(255, 4, 4, 0.3);
@@ -4936,6 +4936,10 @@ a.innovation-tile { cursor: pointer; }
   color: rgba(255,255,255,0.62);
   margin-bottom: 0.6rem;
 }
+#slide-tour .tcard:hover,
+#slide-tour .tcard.expanded {
+  padding-bottom: 1.6rem;
+}
 #slide-tour .tc-recap {
   display: flex;
   align-items: center;
@@ -4955,7 +4959,7 @@ a.innovation-tile { cursor: pointer; }
   border: none;
   box-shadow: 0 6px 18px rgba(255, 4, 4, 0.45);
   transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   box-sizing: border-box;
 }
 #slide-tour .tc-recap::before {
@@ -5483,6 +5487,27 @@ a.innovation-tile { cursor: pointer; }
 
   /* matchup data panel (FORM / SIG STRIKES / GRAPPLING + WINS BY) */
   #slide-betting .mpanel{background:var(--b-bg); padding:10px 12px 4px; flex:none;}
+  /* --- match-page header extras (Main / Bet Builder tabs, show stats, matchup) --- */
+  #slide-betting .b-subtabs{display:flex; gap:8px; padding:10px 2px 2px;}
+  #slide-betting .b-subtabs span{font-size:12px; font-weight:800; color:rgba(255,255,255,.7); padding:6px 16px; border-radius:16px;}
+  #slide-betting .b-subtabs span.act{background:#fff; color:#0a2a20;}
+  #slide-betting .b-showstats{display:flex; align-items:center; justify-content:flex-end; gap:5px; padding:8px 12px; background:var(--b-bg); font-size:10px; font-weight:700; color:var(--b-muted); border-bottom:1px solid var(--b-line);}
+  #slide-betting .b-showstats b{color:#fff; font-style:italic; font-weight:900;}
+  #slide-betting .b-evbanner{display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:#000; font-size:11px; font-weight:800; color:#fff; letter-spacing:.02em;}
+  #slide-betting .b-evbanner .ufc{font-style:italic; font-weight:900; color:#fff; font-size:12px;}
+  #slide-betting .mp-tabs{display:grid; grid-template-columns:1fr 1fr; text-align:center; background:var(--b-bg-2);}
+  #slide-betting .mp-tabs span{font-size:10px; font-weight:800; color:var(--b-muted); padding:9px 0; position:relative;}
+  #slide-betting .mp-tabs span.act{color:#fff;}
+  #slide-betting .mp-tabs span.act::after{content:""; position:absolute; left:30%; right:30%; bottom:0; height:2px; background:var(--b-live);}
+  #slide-betting .mp-vs{display:flex; align-items:center; justify-content:center; gap:10px; padding:12px 10px 10px; background:var(--b-bg); text-align:center;}
+  #slide-betting .mp-vs .nm{display:flex; flex-direction:column;}
+  #slide-betting .mp-vs .nm .fn{font-size:8px; color:var(--b-muted); font-weight:700;}
+  #slide-betting .mp-vs .nm .ln{font-family:"Arial Narrow",Arial,sans-serif; font-size:15px; font-weight:900; color:#fff; text-transform:uppercase; line-height:1;}
+  #slide-betting .mp-vs .vs{font-size:11px; font-weight:900; color:var(--b-muted);}
+  #slide-betting .mp-div{text-align:center; font-size:8px; color:var(--b-muted); font-weight:700; letter-spacing:.1em; padding-bottom:8px; background:var(--b-bg);}
+  #slide-betting .mp-flags{display:flex; align-items:center; justify-content:space-between; padding:7px 12px; background:var(--b-bg-2); font-size:10px; font-weight:800; color:#fff;}
+  #slide-betting .mp-flags .fl{display:flex; align-items:center; gap:5px;}
+  #slide-betting .mp-flags .c{color:var(--b-muted); font-weight:700;}
   #slide-betting .mp-tri{display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; text-align:center; padding-bottom:8px; border-bottom:1px solid var(--b-line);}
   #slide-betting .mp-tri .h{font-size:9px; font-weight:800; color:var(--b-ink); letter-spacing:.02em;}
   #slide-betting .mp-tri .h.act{color:#fff;} #slide-betting .mp-tri .h.act::after{content:""; display:block; height:2px; background:var(--b-live); margin:3px auto 0; width:30px;}
@@ -5798,7 +5823,7 @@ a.innovation-tile { cursor: pointer; }
 #slide-betting.explore-page .bet-sub{ font-size:clamp(13px,1vw,15px) !important; margin-top:10px !important; }
 #slide-betting.explore-page .grid{ margin-top:14px !important; gap:44px !important; align-items:start !important; }
 #slide-betting.explore-page .phone{ width:300px !important; height:600px !important; }
-#slide-betting.explore-page .phone-wrap{ align-self:start !important; margin-top:-14px !important; }
+#slide-betting.explore-page .phone-wrap{ align-self:start !important; margin-top:-30px !important; }
 /* feature titles pop more */
 #slide-betting.explore-page .feature h3{ font-size:18px !important; font-weight:900 !important; color:#fff !important; letter-spacing:.04em !important; }
 #slide-betting.explore-page .feature p{ font-size:13px !important; line-height:1.45 !important; }
@@ -6177,7 +6202,7 @@ a.innovation-tile { cursor: pointer; }
   <div class="slide-inner">
     <div class="roster-text" style="text-align:left; margin-bottom: 20px;">
       <div class="eyebrow">2026 PFL GLOBAL ROSTER</div>
-      <h2 class="h-display">WORLD-CLASS <span class="red">ROSTER.</span></h2>
+      <h2 class="h-display">WORLD-CLASS <span class="red">ROSTER</span></h2>
       <p class="tag-sub" style="margin-top: 8px;">Champions and contenders — PFL boasts some of the best fighters in the world, across 9 stacked weight classes.</p>
     </div>
 
@@ -6942,7 +6967,7 @@ a.innovation-tile { cursor: pointer; }
 <!-- ============================================================ -->
 <!-- SLIDE 13 — PARTNERSHIP -->
 <!-- ============================================================ -->
-<section class="slide" id="slide-partnership" data-pill="11">
+<section class="slide" id="slide-partnership" data-pill="8">
   <div class="slide-bg darker slide-video-bg">
     <video autoplay muted loop playsinline poster="https://pfl-2026.github.io/GTM/assets/images/cage_takedown.jpg">
       <source src="https://pfl-2026.github.io/GTM/assets/video/pfl_sponsorship.mp4" type="video/mp4">
@@ -6980,7 +7005,7 @@ a.innovation-tile { cursor: pointer; }
 <!-- ============================================================ -->
 <!-- SLIDE 15 — CONTENT ECOSYSTEM -->
 <!-- ============================================================ -->
-<section class="slide" id="slide-content" data-pill="11">
+<section class="slide" id="slide-content" data-pill="8">
   <div class="slide-bg darker">
     <img src="https://pfl-2026.github.io/GTM/assets/images/bg_texture.jpg" alt="">
   </div>
@@ -7011,7 +7036,7 @@ a.innovation-tile { cursor: pointer; }
 <!-- ============================================================ -->
 <!-- SLIDE 16 — INNOVATION -->
 <!-- ============================================================ -->
-<section class="slide" id="slide-innovation" data-pill="11">
+<section class="slide" id="slide-innovation" data-pill="8">
   <div class="slide-bg darker">
     <img src="https://pfl-2026.github.io/GTM/assets/images/cage_broadcast.jpg" alt="">
   </div>
@@ -7104,27 +7129,41 @@ a.innovation-tile { cursor: pointer; }
         <div class="notch"></div>
         <div class="screen" id="screen">
 
-          <!-- STAGE 1 : PRE-MATCH FIGHT LINES -->
+          <!-- STAGE 1 : MATCH PAGE (matchup stats + Fight Lines) -->
           <div class="stage on" data-stage="0">
-            <div class="statusbar"><span>16:08</span><span class="r">▦ ▤ ▮</span></div>
+            <div class="statusbar"><span>19:26</span><span class="r">▦ ▤ ▮</span></div>
             <div class="b-head">
               <div class="top">
-                <img class="b-head-logo" src="assets/bet365_logo.png" alt="bet365">
-                <span class="ttl">PFL 2026 · Hughes vs Nurmagomedov <span class="chev">⌄</span></span>
+                <span class="circ">‹</span>
+                <span class="ttl" style="font-size:10px; font-weight:600;">PFL 2026 · Hughes vs Nurmagomedov<br><b style="font-size:13px;">Paul Hughes vs Usman Nurmagomedov <span class="chev">⌄</span></b></span>
                 <span class="circ">⇪</span>
               </div>
+              <div class="b-subtabs"><span class="act">Main</span><span>Bet Builder</span></div>
             </div>
-            <div class="b-tabs"><span class="ham">☰ All</span><span class="act">Fight Lines</span><span>Method of Victory</span><span>Round Betting</span><span>Total</span></div>
-            <div class="streamwrap">
-              <video id="vid-preview" muted loop playsinline preload="auto" poster="assets/hughes_poster.jpg">
-                <source src="assets/hughes_stream.mp4" type="video/mp4">
-              </video>
-              <span class="stream-tag"><span class="live-dot" style="background:var(--b-odds);"></span>WATCH · PREVIEW</span>
-              <span class="stream-badge" style="background:var(--b-green);">LIVE NOW</span>
-              <button class="sound-pill" data-sound="vid-preview">🔇 Tap for sound</button>
-            </div>
-            <div class="body">
-              <div class="acca"><span>ACCA BOOST</span></div>
+            <div class="body" style="overflow-y:auto;">
+              <div class="b-showstats">Show <b>PFL</b> Stats ⌄</div>
+              <div class="b-evbanner"><span>PFL CHAMPIONS SERIES</span><span class="ufc">PFL</span></div>
+              <div class="mp-tabs"><span class="act">MATCHUP</span><span>TAPE</span></div>
+              <div class="mp-vs">
+                <div class="nm"><span class="fn">Paul</span><span class="ln">Hughes</span></div>
+                <span class="vs">VS</span>
+                <div class="nm"><span class="fn">Usman</span><span class="ln">Nurmagomedov</span></div>
+              </div>
+              <div class="mp-div">LIGHTWEIGHT</div>
+              <div class="mp-flags"><span class="fl">🇮🇪 IRL <span class="c">#2</span></span><span class="fl"><span class="c">Rank 1</span> RUS 🇷🇺</span></div>
+              <div class="mpanel">
+                <div class="mp-tri">
+                  <div><div class="h act">FORM</div><div class="v">14 - 2 - 0</div><div class="dots">●●●●●</div></div>
+                  <div><div class="h">SIG. STRIKES</div><div class="v">W-L-D</div><div class="mp-sub">Per minute</div></div>
+                  <div><div class="h">GRAPPLING</div><div class="v">19 - 1 - 0</div><div class="dots">●●●●○</div></div>
+                </div>
+                <div class="mp-winsby">PFL WINS BY</div>
+                <div class="wb-row"><span class="v l">58%</span><span class="tk l"><i style="width:58%"></i></span><span class="lbl">KO/TKO</span><span class="tk r"><i style="width:47%"></i></span><span class="v">47%</span></div>
+                <div class="wb-row"><span class="v l">18%</span><span class="tk l"><i style="width:18%"></i></span><span class="lbl">SUBMISSION</span><span class="tk r"><i style="width:33%"></i></span><span class="v">33%</span></div>
+                <div class="wb-row"><span class="v l">24%</span><span class="tk l"><i style="width:24%"></i></span><span class="lbl">DECISION</span><span class="tk r"><i style="width:20%"></i></span><span class="v">20%</span></div>
+              </div>
+              <div class="ip-grouphd"><span class="t">Fight Lines</span><span class="cashout" style="background:var(--b-green-bright); color:#04130d; border:none;">BB</span></div>
+              <div class="acca"><span style="color:var(--b-green-bright); font-style:italic;">ACCA BOOST</span></div>
               <div class="mhead"><span>Sat 14 Jun</span><span class="c d">Spread</span><span class="c d">Total</span><span class="c d">To Win</span></div>
               <div class="frow">
                 <div class="fighters">
@@ -7133,12 +7172,12 @@ a.innovation-tile { cursor: pointer; }
                   <div class="meta">20:00 <span class="chip">2 »</span></div>
                 </div>
                 <div class="ocol">
-                  <div class="ocell"><div class="lab">-1.5</div><div class="od">2.20</div></div>
-                  <div class="ocell"><div class="lab">+1.5</div><div class="od">1.66</div></div>
+                  <div class="ocell"><div class="lab">-1.5</div><div class="od">1.22</div></div>
+                  <div class="ocell"><div class="lab">+1.5</div><div class="od">4.20</div></div>
                 </div>
                 <div class="ocol">
                   <div class="ocell"><div class="lab">O 2.5</div><div class="od">1.90</div></div>
-                  <div class="ocell"><div class="lab">U 2.5</div><div class="od">1.90</div></div>
+                  <div class="ocell"><div class="lab">U 2.5</div><div class="od">1.83</div></div>
                 </div>
                 <div class="ocol towin">
                   <div class="ocell towin" id="o-hughes"><div class="od big">2.50</div></div>
@@ -7147,7 +7186,7 @@ a.innovation-tile { cursor: pointer; }
               </div>
             </div>
             <div class="bnav">
-              <div class="it home"><span class="ic">⌂</span><span class="bal">$74.50</span></div>
+              <div class="it home"><span class="ic">⌂</span><span class="bal">$0.00</span></div>
               <div class="it"><span class="ic">⌕</span>All Sports</div>
               <div class="it"><span class="ic">((•))</span>In-Play</div>
               <div class="it"><span class="ic">✓</span><span class="badge">1</span>My Bets</div>
@@ -7346,7 +7385,7 @@ a.innovation-tile { cursor: pointer; }
   </div>
 </section>
 
-<section class="slide" id="slide-close" data-pill="11">
+<section class="slide" id="slide-close" data-pill="13">
   <div class="slide-bg cinematic">
     <video autoplay muted loop playsinline poster="https://pfl-2026.github.io/GTM/assets/images/closing_arena.jpg">
       <source src="https://pfl-2026.github.io/GTM/assets/video/pfl_action.mp4" type="video/mp4">
