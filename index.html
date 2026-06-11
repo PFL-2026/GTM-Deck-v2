@@ -4791,6 +4791,7 @@ a.innovation-tile { cursor: pointer; }
 #slide-tour .tcard.expanded {
   flex-basis: 384px;
   width: 384px;
+  min-height: 460px;
   transform: translateY(-6px);
   border-color: var(--pfl-red);
   box-shadow: 0 12px 40px rgba(255, 4, 4, 0.3);
@@ -5598,11 +5599,12 @@ a.innovation-tile { cursor: pointer; }
 
   /* bottom nav */
   #slide-betting .bnav{height:46px; background:#f1f3f2; display:flex; align-items:center; justify-content:space-around; flex:none; position:relative; z-index:10;}
-  #slide-betting .bnav .it{display:flex; flex-direction:column; align-items:center; gap:1px; font-size:8.5px; font-weight:700; color:#2b3a34;}
+  #slide-betting .bnav .it{display:flex; flex-direction:column; align-items:center; gap:2px; font-size:8.5px; font-weight:700; color:#5a6b64; position:relative;}
+  #slide-betting .bnav .it svg{width:19px; height:19px; display:block;}
   #slide-betting .bnav .it .ic{font-size:15px; line-height:1;}
   #slide-betting .bnav .it.home{color:var(--b-green);}
   #slide-betting .bnav .it .bal{font-size:9px; font-weight:800; color:var(--b-green);}
-  #slide-betting .bnav .it .badge{position:absolute; margin-top:-4px; margin-left:14px; background:#222; color:#fff; font-size:7px; font-weight:800; width:12px; height:12px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  #slide-betting .bnav .it .badge{position:absolute; top:-3px; left:calc(50% + 6px); background:#222; color:#fff; font-size:7px; font-weight:800; width:12px; height:12px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
 
   /* scrubber + caption + controls */
   #slide-betting .scrub{display:flex; gap:7px; align-items:center; width:296px;}
@@ -5947,7 +5949,7 @@ a.innovation-tile { cursor: pointer; }
   <div class="slide-grain"></div>
   <div class="slide-inner">
     <div class="hero-tag">PROFESSIONAL FIGHTERS LEAGUE</div>
-    <img class="hero-pfl-logo" src="assets/logos/pfl_main.png" alt="PFL">
+    <img class="hero-pfl-logo" src="assets/logos/pfl_logo_full.png" alt="PFL">
     <div class="hero-title">2026</div>
     <div class="hero-subtitle">A NEW ERA OF GLOBAL MMA</div>
   </div>
@@ -6430,21 +6432,21 @@ a.innovation-tile { cursor: pointer; }
     <div class="format-brands">
       <div class="brand-tile">
         <div class="brand-tile-logo">
-          <img src="assets/logos/pfl_global_events.png" alt="PFL Global Events">
+          <img src="assets/logos/pfl_global_events_full.png" alt="PFL Global Events">
         </div>
         <h4>PFL GLOBAL</h4>
         <p>The flagship — 16 events, fight-by-fight matchmaking, one global distribution partner.</p>
       </div>
       <div class="brand-tile">
         <div class="brand-tile-logo">
-          <img src="assets/logos/pfl_africa.png" alt="PFL Africa">
+          <img src="assets/logos/pfl_africa_full.png" alt="PFL Africa">
         </div>
         <h4>PFL AFRICA</h4>
         <p>Developing the world's fastest-growing MMA region with home-grown stars.</p>
       </div>
       <div class="brand-tile">
         <div class="brand-tile-logo">
-          <img src="assets/logos/pfl_mena.png" alt="PFL MENA">
+          <img src="assets/logos/pfl_logo_full.png" alt="PFL MENA">
         </div>
         <h4>PFL MENA</h4>
         <p>Expanding the league's footprint across the Middle East &amp; North Africa.</p>
@@ -7186,11 +7188,26 @@ a.innovation-tile { cursor: pointer; }
               </div>
             </div>
             <div class="bnav">
-              <div class="it home"><span class="ic">⌂</span><span class="bal">$0.00</span></div>
-              <div class="it"><span class="ic">⌕</span>All Sports</div>
-              <div class="it"><span class="ic">((•))</span>In-Play</div>
-              <div class="it"><span class="ic">✓</span><span class="badge">1</span>My Bets</div>
-              <div class="it"><span class="ic">▦</span>Casino</div>
+              <div class="it home">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v11h6v-7h6v7h6V10z"/></svg>
+                <span class="bal">$0.00</span>
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+                All Sports
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.4 6.4 0 0 0 0 8.8M16.4 7.6a6.4 6.4 0 0 1 0 8.8M4.8 4.8a10.2 10.2 0 0 0 0 14.4M19.2 4.8a10.2 10.2 0 0 1 0 14.4"/></svg>
+                In-Play
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+                <span class="badge">1</span>My Bets
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="17" height="12" rx="2"/><line x1="8.5" y1="10" x2="8.5" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="15.5" y1="10" x2="15.5" y2="14"/></svg>
+                Casino
+              </div>
             </div>
           </div>
 
@@ -7231,11 +7248,26 @@ a.innovation-tile { cursor: pointer; }
               </div>
             </div>
             <div class="bnav">
-              <div class="it home"><span class="ic">⌂</span><span class="bal">$74.50</span></div>
-              <div class="it"><span class="ic">⌕</span>All Sports</div>
-              <div class="it"><span class="ic">((•))</span>In-Play</div>
-              <div class="it"><span class="ic">✓</span><span class="badge">1</span>My Bets</div>
-              <div class="it"><span class="ic">▦</span>Casino</div>
+              <div class="it home">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v11h6v-7h6v7h6V10z"/></svg>
+                <span class="bal">$74.50</span>
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+                All Sports
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.4 6.4 0 0 0 0 8.8M16.4 7.6a6.4 6.4 0 0 1 0 8.8M4.8 4.8a10.2 10.2 0 0 0 0 14.4M19.2 4.8a10.2 10.2 0 0 1 0 14.4"/></svg>
+                In-Play
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+                <span class="badge">1</span>My Bets
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="17" height="12" rx="2"/><line x1="8.5" y1="10" x2="8.5" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="15.5" y1="10" x2="15.5" y2="14"/></svg>
+                Casino
+              </div>
             </div>
           </div>
 
@@ -7258,11 +7290,26 @@ a.innovation-tile { cursor: pointer; }
               </div>
             </div>
             <div class="bnav">
-              <div class="it home"><span class="ic">⌂</span><span class="bal">$93.00</span></div>
-              <div class="it"><span class="ic">⌕</span>All Sports</div>
-              <div class="it"><span class="ic">((•))</span>In-Play</div>
-              <div class="it"><span class="ic">✓</span><span class="badge">1</span>My Bets</div>
-              <div class="it"><span class="ic">▦</span>Casino</div>
+              <div class="it home">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v11h6v-7h6v7h6V10z"/></svg>
+                <span class="bal">$93.00</span>
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+                All Sports
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.4 6.4 0 0 0 0 8.8M16.4 7.6a6.4 6.4 0 0 1 0 8.8M4.8 4.8a10.2 10.2 0 0 0 0 14.4M19.2 4.8a10.2 10.2 0 0 1 0 14.4"/></svg>
+                In-Play
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+                <span class="badge">1</span>My Bets
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="17" height="12" rx="2"/><line x1="8.5" y1="10" x2="8.5" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="15.5" y1="10" x2="15.5" y2="14"/></svg>
+                Casino
+              </div>
             </div>
           </div>
 
@@ -7299,11 +7346,26 @@ a.innovation-tile { cursor: pointer; }
               </div>
             </div>
             <div class="bnav">
-              <div class="it home"><span class="ic">⌂</span><span class="bal">$93.00</span></div>
-              <div class="it"><span class="ic">⌕</span>All Sports</div>
-              <div class="it"><span class="ic">((•))</span>In-Play</div>
-              <div class="it"><span class="ic">✓</span><span class="badge">1</span>My Bets</div>
-              <div class="it"><span class="ic">▦</span>Casino</div>
+              <div class="it home">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v11h6v-7h6v7h6V10z"/></svg>
+                <span class="bal">$93.00</span>
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+                All Sports
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M7.6 7.6a6.4 6.4 0 0 0 0 8.8M16.4 7.6a6.4 6.4 0 0 1 0 8.8M4.8 4.8a10.2 10.2 0 0 0 0 14.4M19.2 4.8a10.2 10.2 0 0 1 0 14.4"/></svg>
+                In-Play
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+                <span class="badge">1</span>My Bets
+              </div>
+              <div class="it">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="17" height="12" rx="2"/><line x1="8.5" y1="10" x2="8.5" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="15.5" y1="10" x2="15.5" y2="14"/></svg>
+                Casino
+              </div>
             </div>
           </div>
 
@@ -7393,7 +7455,7 @@ a.innovation-tile { cursor: pointer; }
   </div>
   <div class="slide-grain"></div>
   <div class="slide-inner">
-    <img class="close-pfl-logo" src="assets/logos/pfl_main.png" alt="PFL">
+    <img class="close-pfl-logo" src="assets/logos/pfl_logo_full.png" alt="PFL">
     <div class="close-headline">PROFESSIONAL FIGHTERS LEAGUE</div>
     <div class="close-line"></div>
     <div class="close-cta">2026 — A NEW ERA OF GLOBAL MMA</div>
