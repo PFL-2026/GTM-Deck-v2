@@ -2924,6 +2924,15 @@ a.fighter-ig:hover {
   gap: 14px;
   margin-top: 40px;
 }
+.content-grid.grid-6 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content-grid.grid-6 .content-tile { aspect-ratio: 16/9; }
+.content-grid.grid-6 .ct-label { max-width: 62%; }
 .content-tile {
   aspect-ratio: 16/10;
   background-size: cover;
@@ -5762,6 +5771,83 @@ a.innovation-tile { cursor: pointer; }
   transition:opacity .35s ease, transform .35s ease;
 }
 
+/* ===== GENERIC EXPLORE POP-UP: same "slide within a slide" modal as betting ===== */
+#explore-generic.explore-page{
+  background:rgba(2,7,23,.74);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  overflow:visible;
+}
+#explore-generic .eg-card{
+  position:relative;
+  width:min(960px, 92vw); height:min(620px, 86vh);
+  padding:30px 44px 38px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(900px 440px at 80% -10%, rgba(255,4,4,.12), transparent 60%),
+    radial-gradient(800px 460px at 6% 112%, rgba(5,35,131,.30), transparent 55%),
+    linear-gradient(180deg, #0a1430, #060d22);
+  box-shadow:0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04) inset;
+  overflow:hidden;
+  display:flex; flex-direction:column;
+  animation:betPopIn .4s cubic-bezier(.2,.8,.2,1);
+}
+#explore-generic .eg-card::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--pfl-red), var(--pfl-red-bright)); z-index:5;
+}
+#explore-generic .eg-card::after{
+  content:""; position:absolute; inset:0; border-radius:24px; z-index:-1;
+  transform:translate(14px, 16px);
+  background:rgba(8,16,40,.5); border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+#explore-generic .bet-pop-tag{
+  position:absolute; top:18px; left:44px; z-index:8;
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-condensed); font-weight:800; font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(150,175,230,.9);
+}
+#explore-generic .bet-pop-tag::before{ content:""; width:22px; height:2px; background:var(--pfl-red); display:inline-block; }
+#explore-generic .explore-back{
+  top:16px; right:18px; left:auto; z-index:9;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+  width:auto; padding:9px 16px;
+}
+#explore-generic .explore-back:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
+#explore-generic .eg-hero{
+  margin-top:34px; height:150px; border-radius:12px; overflow:hidden; flex:none;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+}
+#explore-generic .eg-hero img{ width:100%; height:100%; object-fit:cover; display:block; }
+#explore-generic .eg-inner{
+  position:static; padding:0; margin-top:20px;
+  display:flex; flex-direction:column; flex:1; min-height:0;
+}
+#explore-generic .eg-kicker{
+  font-family:var(--font-condensed); font-weight:700; font-size:12px;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--pfl-red); margin-bottom:8px;
+}
+#explore-generic .eg-title{
+  font-family:var(--font-display); font-size:clamp(34px,3.6vw,56px);
+  line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 14px;
+}
+#explore-generic .eg-body{ font-family:var(--font-body); font-size:15px; line-height:1.6; color:rgba(255,255,255,.82); max-width:62ch; }
+/* empty-state placeholder for the templates */
+#explore-generic .eg-placeholder{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  border:1.5px dashed rgba(255,255,255,.16); border-radius:14px; margin-top:4px;
+  color:rgba(255,255,255,.45);
+}
+#explore-generic .eg-placeholder .ph-mark{
+  width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:26px; font-weight:300; color:#fff; background:var(--pfl-red); box-shadow:0 6px 18px rgba(255,4,4,.4);
+}
+#explore-generic .eg-placeholder .ph-txt{
+  font-family:var(--font-condensed); font-weight:700; font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+}
+
 /* ===== BETTING POP-UP: distinct "slide within a slide" modal ===== */
 #slide-betting.explore-page{
   background:rgba(2,7,23,.74);
@@ -7020,17 +7106,15 @@ a.innovation-tile { cursor: pointer; }
   <div class="slide-inner">
     <div class="eyebrow">TAILORED PFL CONTENT</div>
     <h2 class="h-display">CONTENT <span class="red">ECOSYSTEM</span></h2>
-    <p class="body-lead">8 content franchises supporting the in-cage product across the calendar.</p>
+    <p class="body-lead">6 content franchises supporting the in-cage product across the calendar.</p>
 
-    <div class="content-grid">
-      <div class="content-tile" data-explore="generic" data-ex-title="Fight Week" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg" data-ex-body="A week-long content build to every event — open workouts, media days, weigh-ins and the final face-off — packaged for broadcast, social and partner channels." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg');"><span class="ct-label">FIGHT WEEK</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Behind-the-scenes" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/backstage_prep.jpg" data-ex-body="All-access backstage footage — locker-room nerves, corner instructions and the walk to the cage — the unscripted moments that build fighter stories and fan loyalty." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/backstage_prep.jpg');"><span class="ct-label">BEHIND-THE-SCENES</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Faceoffs" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg" data-ex-body="The signature pre-fight stare-down — high-tension, highly shareable moments that drive the rivalry narrative and spike social engagement before every main event." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg');"><span class="ct-label">FACEOFFS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Origins" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/pfl_origins.jpg" data-ex-body="Long-form documentary storytelling on the fighters' journeys — the background, the grind and the stakes that turn athletes into must-watch stars." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/pfl_origins.jpg');"><span class="ct-label">ORIGINS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="WSC Highlights" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/hughes_usman.jpg" data-ex-body="Fast-turnaround highlight packages from every World Series of Cage card — knockouts, submissions and key moments cut for social, broadcast and partner use." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/hughes_usman.jpg');"><span class="ct-label">WSC HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+    <div class="content-grid grid-6">
+      <div class="content-tile" data-explore="generic" data-ex-title="Fighter Face-Offs" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg');"><span class="ct-label">FIGHTER FACE-OFFS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="generic" data-ex-title="Ceremonial Weigh-Ins" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg');"><span class="ct-label">CEREMONIAL WEIGH-INS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="generic" data-ex-title="Event Nights" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/arena_hero.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/arena_hero.jpg');"><span class="ct-label">EVENT NIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="generic" data-ex-title="Automated Fight Highlights" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/hughes_usman.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/hughes_usman.jpg');"><span class="ct-label">AUTOMATED FIGHT HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="generic" data-ex-title="Original Content Series" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/pfl_origins.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/pfl_origins.jpg');"><span class="ct-label">ORIGINAL CONTENT SERIES</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="betting" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/event_centre_matchup.jpg');"><span class="ct-label">BETTING DATA</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Shoulder Programming" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/shoulder_gym.jpg" data-ex-body="Studio and magazine-style shows around each event — analysis, preview and review programming that extends watch-time and creates premium ad inventory." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/shoulder_gym.jpg');"><span class="ct-label">SHOULDER PROGRAMMING</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Between Rounds" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/cage_broadcast.jpg" data-ex-body="Branded inventory that fills the gaps between fights — replays, prediction streaks, free-bet offers and sponsor moments that keep fans engaged on the second screen." style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/cage_broadcast.jpg');"><span class="ct-label">BETWEEN ROUNDS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
     </div>
   </div>
 </section>
@@ -7428,21 +7512,18 @@ a.innovation-tile { cursor: pointer; }
 <!-- GENERIC EXPLORE PAGE (shared layout for content boxes) -->
 <!-- ============================================================ -->
 <section class="explore-page" id="explore-generic">
-  <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
-  <div class="slide-bg darker"><img id="eg-img" src="" alt=""></div>
-  <div class="slide-grain"></div>
-  <div class="brand-mark">
-    <img src="assets/logos/pfl_main.png" alt="PFL">
-    <span class="yr">2026 GTM</span>
-  </div>
-  <div class="eg-inner">
-    <div class="eg-kicker">Content Franchise</div>
-    <h2 class="eg-title" id="eg-title">—</h2>
-    <p class="eg-body" id="eg-body">—</p>
-    <div class="eg-points">
-      <div class="eg-point"><div class="epn">Multi&#8209;platform</div><div class="epl">Broadcast, social &amp; partner channels</div></div>
-      <div class="eg-point"><div class="epn">Always&#8209;on</div><div class="epl">Programmed across the full calendar</div></div>
-      <div class="eg-point"><div class="epn">Brand&#8209;safe</div><div class="epl">Premium inventory for partners</div></div>
+  <div class="eg-card">
+    <span class="bet-pop-tag">Explore · <span id="eg-tag">Content</span></span>
+    <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
+    <div class="eg-hero"><img id="eg-img" src="" alt=""></div>
+    <div class="eg-inner">
+      <div class="eg-kicker">Content Franchise</div>
+      <h2 class="eg-title" id="eg-title">—</h2>
+      <p class="eg-body" id="eg-body"></p>
+      <div class="eg-placeholder" id="eg-placeholder">
+        <span class="ph-mark">+</span>
+        <span class="ph-txt">Template ready — content to be added.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -8286,9 +8367,14 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
           var tEl = genericPage.querySelector('#eg-title');
           var bEl = genericPage.querySelector('#eg-body');
           var iEl = genericPage.querySelector('#eg-img');
+          var tagEl = genericPage.querySelector('#eg-tag');
+          var phEl = genericPage.querySelector('#eg-placeholder');
           if(tEl) tEl.textContent = t;
+          if(tagEl) tagEl.textContent = t;
           if(bEl) bEl.textContent = body;
           if(iEl) iEl.src = img;
+          if(phEl) phEl.style.display = body ? 'none' : 'flex';
+          if(bEl) bEl.style.display = body ? 'block' : 'none';
           openExplore(genericPage);
         }
       }
