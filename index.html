@@ -5521,6 +5521,8 @@ a.innovation-tile { cursor: pointer; }
 
   /* live stream hero (video) */
   #slide-betting .streamwrap{position:relative; background:#000; flex:none; overflow:hidden;}
+  #slide-betting .streamwrap.stream-full{ flex:1; }
+  #slide-betting .streamwrap.stream-full video{ width:100%; height:100%; object-fit:cover; }
   #slide-betting .streamwrap video{width:100%; display:block; object-fit:cover;}
   #slide-betting .stream-tag{position:absolute; top:8px; left:8px; display:flex; align-items:center; gap:5px;
     background:rgba(0,0,0,.55); padding:3px 8px; border-radius:5px; font-size:9px; font-weight:800; letter-spacing:.08em; color:#fff; z-index:3;}
@@ -5954,6 +5956,63 @@ a.innovation-tile { cursor: pointer; }
 .vid-explore .vid-desc{
   font-family:var(--font-body); font-size:13.5px; line-height:1.55; color:rgba(255,255,255,.8);
 }
+/* ===== Ceremonial Weigh-Ins modal ===== */
+#explore-ceremonial.explore-page{
+  background:rgba(2,7,23,.74);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center; overflow:visible;
+}
+#explore-ceremonial .eg-card{
+  position:relative; width:min(1340px, 96vw); height:auto; max-height:94vh; overflow-y:auto;
+  padding:30px 40px 36px; border-radius:24px; border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(900px 440px at 80% -10%, rgba(255,4,4,.12), transparent 60%),
+    radial-gradient(800px 460px at 6% 112%, rgba(5,35,131,.30), transparent 55%),
+    linear-gradient(180deg, #0a1430, #060d22);
+  box-shadow:0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04) inset;
+  display:flex; flex-direction:column;
+  animation:betPopIn .4s cubic-bezier(.2,.8,.2,1);
+}
+#explore-ceremonial .eg-card::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg, var(--pfl-red), var(--pfl-red-bright)); z-index:5;
+}
+#explore-ceremonial .explore-back{
+  top:16px; right:18px; left:auto; z-index:9;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); width:auto; padding:9px 16px;
+}
+#explore-ceremonial .explore-back:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
+#explore-ceremonial .eg-inner{ position:static; padding:0; margin-top:8px; display:flex; flex-direction:column; }
+#explore-ceremonial .eg-kicker{
+  font-family:var(--font-condensed); font-weight:700; font-size:12px;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--pfl-red); margin-bottom:8px;
+}
+#explore-ceremonial .eg-title{
+  font-family:var(--font-display); font-size:clamp(30px,3.2vw,48px);
+  line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 12px;
+}
+#explore-ceremonial .eg-body{
+  font-family:var(--font-body); font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.84); max-width:92ch;
+}
+#explore-ceremonial .cer-grid{
+  margin-top:22px; display:grid; grid-template-columns:1.5fr 1fr; gap:30px; align-items:stretch;
+}
+#explore-ceremonial .cer-video{ aspect-ratio:16/9; }
+#explore-ceremonial .cer-copy{ display:flex; flex-direction:column; justify-content:center; }
+#explore-ceremonial .cer-lead{
+  font-family:var(--font-condensed); font-weight:800; font-size:20px; letter-spacing:.01em;
+  color:#fff; line-height:1.25; margin:0 0 18px;
+}
+#explore-ceremonial .cer-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:15px; }
+#explore-ceremonial .cer-list li{
+  position:relative; padding-left:24px;
+  font-family:var(--font-body); font-size:15px; line-height:1.45; color:rgba(255,255,255,.72);
+}
+#explore-ceremonial .cer-list li::before{
+  content:""; position:absolute; left:0; top:6px; width:11px; height:11px; border-radius:3px; background:var(--pfl-red);
+}
+#explore-ceremonial .cer-list li b{ color:#fff; font-weight:800; }
+@media (max-width:640px){ #explore-ceremonial .cer-grid{ grid-template-columns:1fr; } }
 /* ===== Automated Fight Highlights modal ===== */
 #explore-highlights.explore-page{
   background:rgba(2,7,23,.74);
@@ -7299,9 +7358,9 @@ a.innovation-tile { cursor: pointer; }
 
     <div class="content-grid grid-6">
       <div class="content-tile" data-explore="faceoffs" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg');"><span class="ct-label">FIGHTER FACE-OFFS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="generic" data-ex-title="Ceremonial Weigh-Ins" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg');"><span class="ct-label">CEREMONIAL WEIGH-INS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="eventnight" style="background-image: url('assets/images/event_night_cover.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #050b1e;"><span class="ct-label">EVENT NIGHT</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="highlights" style="background-image: url('assets/images/wsc_highlights_cover.jpg'); background-size: cover; background-position: center;"><span class="ct-label">AUTOMATED FIGHT HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="ceremonial" style="background-image: url('assets/images/ceremonial_cover_bw.jpg'); background-size: cover; background-position: center;"><span class="ct-label">CEREMONIAL WEIGH-INS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="eventnight" style="background-image: url('assets/images/event_night_cover.jpg'); background-size: cover; background-position: center;"><span class="ct-label">EVENT NIGHT</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="highlights" style="background-image: url('assets/images/wsc_highlights_cover.jpg'); background-size: cover; background-position: center top;"><span class="ct-label">AUTOMATED FIGHT HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="origseries" style="background-image: url('assets/images/original_content_cover.jpg');"><span class="ct-label">ORIGINAL CONTENT SERIES</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="betting" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/event_centre_matchup.jpg');"><span class="ct-label">OFFICIAL BETTING DATA</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
     </div>
@@ -7407,58 +7466,13 @@ a.innovation-tile { cursor: pointer; }
           <!-- STAGE 1 : MATCH PAGE (matchup stats + Fight Lines) -->
           <div class="stage on" data-stage="0">
             <div class="statusbar"><span>19:26</span><span class="r">▦ ▤ ▮</span></div>
-            <div class="b-head">
-              <div class="top">
-                <span class="circ">‹</span>
-                <span class="ttl" style="font-size:10px; font-weight:600;">PFL 2026 · Hughes vs Nurmagomedov<br><b style="font-size:13px;">Paul Hughes vs Usman Nurmagomedov <span class="chev">⌄</span></b></span>
-                <span class="circ">⇪</span>
-              </div>
-              <div class="b-subtabs"><span class="act">Main</span><span>Bet Builder</span></div>
-            </div>
-            <div class="body" style="overflow-y:auto;">
-              <div class="b-showstats">Show <b>PFL</b> Stats ⌄</div>
-              <div class="b-evbanner"><span>PFL CHAMPIONS SERIES</span><span class="ufc">PFL</span></div>
-              <div class="mp-tabs"><span class="act">MATCHUP</span><span>TAPE</span></div>
-              <div class="mp-vs">
-                <div class="nm"><span class="fn">Paul</span><span class="ln">Hughes</span></div>
-                <span class="vs">VS</span>
-                <div class="nm"><span class="fn">Usman</span><span class="ln">Nurmagomedov</span></div>
-              </div>
-              <div class="mp-div">LIGHTWEIGHT</div>
-              <div class="mp-flags"><span class="fl">🇮🇪 IRL <span class="c">#2</span></span><span class="fl"><span class="c">Rank 1</span> RUS 🇷🇺</span></div>
-              <div class="mpanel">
-                <div class="mp-tri">
-                  <div><div class="h act">FORM</div><div class="v">14 - 2 - 0</div><div class="dots">●●●●●</div></div>
-                  <div><div class="h">SIG. STRIKES</div><div class="v">W-L-D</div><div class="mp-sub">Per minute</div></div>
-                  <div><div class="h">GRAPPLING</div><div class="v">19 - 1 - 0</div><div class="dots">●●●●○</div></div>
-                </div>
-                <div class="mp-winsby">PFL WINS BY</div>
-                <div class="wb-row"><span class="v l">58%</span><span class="tk l"><i style="width:58%"></i></span><span class="lbl">KO/TKO</span><span class="tk r"><i style="width:47%"></i></span><span class="v">47%</span></div>
-                <div class="wb-row"><span class="v l">18%</span><span class="tk l"><i style="width:18%"></i></span><span class="lbl">SUBMISSION</span><span class="tk r"><i style="width:33%"></i></span><span class="v">33%</span></div>
-                <div class="wb-row"><span class="v l">24%</span><span class="tk l"><i style="width:24%"></i></span><span class="lbl">DECISION</span><span class="tk r"><i style="width:20%"></i></span><span class="v">20%</span></div>
-              </div>
-              <div class="ip-grouphd"><span class="t">Fight Lines</span><span class="cashout" style="background:var(--b-green-bright); color:#04130d; border:none;">BB</span></div>
-              <div class="acca"><span style="color:var(--b-green-bright); font-style:italic;">ACCA BOOST</span></div>
-              <div class="mhead"><span>Sat 14 Jun</span><span class="c d">Spread</span><span class="c d">Total</span><span class="c d">To Win</span></div>
-              <div class="frow">
-                <div class="fighters">
-                  <div class="fr"><span class="trunk" style="background:#1a1a1a;"></span>Paul Hughes</div>
-                  <div class="fr"><span class="trunk" style="background:#e2e2e2;"></span>Usman Nurmagomedov</div>
-                  <div class="meta">20:00 <span class="chip">2 »</span></div>
-                </div>
-                <div class="ocol">
-                  <div class="ocell"><div class="lab">-1.5</div><div class="od">1.22</div></div>
-                  <div class="ocell"><div class="lab">+1.5</div><div class="od">4.20</div></div>
-                </div>
-                <div class="ocol">
-                  <div class="ocell"><div class="lab">O 2.5</div><div class="od">1.90</div></div>
-                  <div class="ocell"><div class="lab">U 2.5</div><div class="od">1.83</div></div>
-                </div>
-                <div class="ocol towin">
-                  <div class="ocell towin" id="o-hughes"><div class="od big">2.50</div></div>
-                  <div class="ocell towin" id="o-usman"><div class="od big">1.53</div></div>
-                </div>
-              </div>
+            <div class="streamwrap stream-full">
+              <video id="vid-stream0" muted loop playsinline preload="auto" poster="assets/hughes_poster.jpg">
+                <source src="assets/hughes_stream.mp4" type="video/mp4">
+              </video>
+              <span class="stream-tag"><span class="live-dot"></span>LIVE STREAM</span>
+              <span class="stream-badge">R2 · 0:12</span>
+              <div class="stream-score"><span class="sf">HUGHES</span><span class="rnd">ROUND 2 OF 3</span><span class="sf">NURMAGOMEDOV</span></div>
             </div>
             <div class="bnav">
               <div class="it home">
@@ -7793,6 +7807,33 @@ a.innovation-tile { cursor: pointer; }
 <!-- ============================================================ -->
 <!-- ORIGINAL CONTENT SERIES EXPLORE PAGE (2 embedded series) -->
 <!-- ============================================================ -->
+<section class="explore-page vid-explore" id="explore-ceremonial">
+  <div class="eg-card">
+    <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
+    <div class="eg-inner">
+      <div class="eg-kicker">Content Franchise</div>
+      <h2 class="eg-title">Ceremonial Weigh-Ins</h2>
+      <p class="eg-body">The spectacle before the fight — free, open-to-the-public ceremonial weigh-ins that turn fight week into a city-wide moment and put fans nose-to-nose with the stars.</p>
+      <div class="cer-grid">
+        <figure class="vid-cell cer-video">
+          <video autoplay muted loop playsinline poster="assets/images/ceremonial_still.jpg">
+            <source src="assets/video/ceremonial.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <div class="cer-copy">
+          <p class="cer-lead">Open to every fan — and built for brands.</p>
+          <ul class="cer-list">
+            <li><b>Free &amp; open to all.</b> Packed, all-ages crowds.</li>
+            <li><b>Youth &amp; community first.</b> Grassroots reach that grows the sport.</li>
+            <li><b>A brand-ready stage.</b> Signage and content made for social.</li>
+            <li><b>Streamed free.</b> Live on YouTube and the PFL app.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="explore-page vid-explore" id="explore-highlights">
   <div class="eg-card">
     <button class="explore-back" data-close-explore aria-label="Back to content">‹ Back</button>
@@ -8711,6 +8752,7 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   var eventnightPage = document.getElementById('explore-eventnight');
   var origseriesPage = document.getElementById('explore-origseries');
   var highlightsPage = document.getElementById('explore-highlights');
+  var ceremonialPage = document.getElementById('explore-ceremonial');
 
   function playVids(page){
     if(!page) return;
@@ -8724,10 +8766,13 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
       var type = tile.getAttribute('data-explore');
       if(type === 'betting'){
         openExplore(bettingPage);
+        if(bettingPage && bettingPage._restart) bettingPage._restart();
       } else if(type === 'faceoffs'){
         openExplore(faceoffsPage); playVids(faceoffsPage);
       } else if(type === 'eventnight'){
         openExplore(eventnightPage); playVids(eventnightPage);
+      } else if(type === 'ceremonial'){
+        openExplore(ceremonialPage); playVids(ceremonialPage);
       } else if(type === 'highlights'){
         openExplore(highlightsPage);
       } else if(type === 'origseries'){
@@ -8801,7 +8846,7 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   var cap=ROOT.querySelector('#cap');
   var toggle=ROOT.querySelector('#toggle');
   var captions=[
-    ['01 · Pre-match','Fan opens the bet365 fight card and sees the live stream above the Hughes v Nurmagomedov lines — spread, total and to-win.'],
+    ['01 · Watch where you bet','The live PFL stream plays full-screen inside the bet365 app — the fight front and centre, the markets a tap away.'],
     ['02 · In-play','The live stream plays inside the app. As Hughes takes over round 2, the live winner odds shorten 2.50 → 1.85 in real time.'],
     ['03 · Winning moment','The KO lands. The live bet is cashed out and pays £18.50 instantly — balance updates the second the fight ends.'],
     ['04 · Between fights','KO of the night replays on a loop, archive content and free-bet offers keep the fan in-app until the next walkout.']
@@ -8859,6 +8904,9 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   toggle.onclick=function(){ setPlay(!playing); };
   segs.forEach(function(s,idx){ s.onclick=function(){ show(idx); }; });
   feats.forEach(function(f){ f.onclick=function(){ show(+f.getAttribute('data-go')); }; });
+
+  // Restart the walkthrough at "Watch where you bet" whenever the modal is opened
+  ROOT._restart = function(){ show(0); };
 
   /* sound toggles — unmute the relevant video, keep looping */
   ROOT.querySelectorAll('.sound-pill, .snd').forEach(function(btn){
