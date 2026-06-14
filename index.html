@@ -5652,8 +5652,8 @@ a.innovation-tile { cursor: pointer; }
   #slide-betting .bnav .it{display:flex; flex-direction:column; align-items:center; gap:2px; font-size:8.5px; font-weight:700; color:#5a6b64; position:relative;}
   #slide-betting .bnav .it svg{width:19px; height:19px; display:block;}
   #slide-betting .bnav .it .ic{font-size:15px; line-height:1;}
-  #slide-betting .bnav .it.home{color:var(--b-green);}
-  #slide-betting .bnav .it .bal{font-size:9px; font-weight:800; color:var(--b-green);}
+  #slide-betting .bnav .it.home{color:#5a6b64;}
+  #slide-betting .bnav .it .bal{font-size:8.5px; font-weight:700; color:#5a6b64;}
   #slide-betting .bnav .it .badge{position:absolute; top:-3px; left:calc(50% + 6px); background:#222; color:#fff; font-size:7px; font-weight:800; width:12px; height:12px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
 
   /* scrubber + caption + controls */
@@ -5734,7 +5734,7 @@ a.innovation-tile { cursor: pointer; }
 #slide-betting .bet-title .red{ color:var(--pfl-red); }
 #slide-betting .bet-sub{
   font-family:var(--font-body); font-weight:400;
-  font-size:14.5px; letter-spacing:normal; text-transform:none;
+  font-size:16px; letter-spacing:normal; text-transform:none;
   color:rgba(255,255,255,.84); max-width:70ch; margin:14px 0 0; line-height:1.55;
 }
 #slide-betting .bet-sub b{ color:#fff; font-weight:700; }
@@ -5874,7 +5874,7 @@ a.innovation-tile { cursor: pointer; }
   font-family:var(--font-display); font-size:clamp(34px,3.6vw,56px);
   line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 14px;
 }
-#explore-generic .eg-body{ font-family:var(--font-body); font-size:15px; line-height:1.6; color:rgba(255,255,255,.82); max-width:62ch; }
+#explore-generic .eg-body{ font-family:var(--font-body); font-size:16px; line-height:1.6; color:rgba(255,255,255,.82); max-width:62ch; }
 /* empty-state placeholder for the templates */
 #explore-generic .eg-placeholder{
   flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
@@ -5930,7 +5930,7 @@ a.innovation-tile { cursor: pointer; }
   line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 12px;
 }
 #explore-faceoffs .eg-body, #explore-eventnight .eg-body, #explore-origseries .eg-body{
-  font-family:var(--font-body); font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.84); max-width:70ch;
+  font-family:var(--font-body); font-size:16px; line-height:1.55; color:rgba(255,255,255,.84); max-width:70ch;
 }
 /* video tiles — shared */
 .vid-explore .vid-grid{ margin-top:22px; }
@@ -5992,13 +5992,13 @@ a.innovation-tile { cursor: pointer; }
   line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 12px;
 }
 #explore-ceremonial .eg-body{
-  font-family:var(--font-body); font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.84); max-width:92ch;
+  font-family:var(--font-body); font-size:16px; line-height:1.55; color:rgba(255,255,255,.84); max-width:92ch;
 }
 #explore-ceremonial .cer-grid{
   margin-top:22px; display:grid; grid-template-columns:1.5fr 1fr; gap:30px; align-items:stretch;
 }
 #explore-ceremonial .cer-video{ aspect-ratio:16/9; }
-#explore-ceremonial .cer-copy{ display:flex; flex-direction:column; justify-content:center; }
+#explore-ceremonial .cer-copy{ display:flex; flex-direction:column; justify-content:flex-start; }
 #explore-ceremonial .cer-lead{
   font-family:var(--font-condensed); font-weight:800; font-size:20px; letter-spacing:.01em;
   color:#fff; line-height:1.25; margin:0 0 18px;
@@ -6049,7 +6049,7 @@ a.innovation-tile { cursor: pointer; }
   line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 12px;
 }
 #explore-highlights .eg-body{
-  font-family:var(--font-body); font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.84); max-width:92ch;
+  font-family:var(--font-body); font-size:16px; line-height:1.55; color:rgba(255,255,255,.84); max-width:92ch;
 }
 #explore-highlights .vid-cell{ aspect-ratio:16/9; cursor:pointer; }
 #explore-highlights .hl-play{
@@ -6156,7 +6156,7 @@ a.innovation-tile { cursor: pointer; }
 #slide-betting .betting-scroll .bet-deck{ padding-top:30px; }
 /* compact title + phone so the pop-up fits its card and feels lighter */
 #slide-betting.explore-page .bet-title{ font-size:clamp(30px,3.2vw,48px) !important; }
-#slide-betting.explore-page .bet-sub{ font-size:clamp(13px,1vw,15px) !important; margin-top:10px !important; }
+#slide-betting.explore-page .bet-sub{ font-size:16px !important; margin-top:10px !important; }
 #slide-betting.explore-page .grid{ margin-top:14px !important; gap:44px !important; align-items:start !important; }
 #slide-betting.explore-page .phone{ width:300px !important; height:600px !important; }
 #slide-betting.explore-page .phone-wrap{ align-self:start !important; margin-top:-30px !important; }
@@ -7698,8 +7698,6 @@ a.innovation-tile { cursor: pointer; }
 
       <div class="powered">
         <span class="px">Powered by</span>
-        <img class="pw-bet365" src="assets/bet365_logo.png" alt="bet365">
-        <span class="x">×</span>
         <img class="pw-sr-icon" src="assets/sportradar_icon.png" alt="">
         <span class="sr">sportradar</span>
       </div>
@@ -7821,12 +7819,12 @@ a.innovation-tile { cursor: pointer; }
           </video>
         </figure>
         <div class="cer-copy">
-          <p class="cer-lead">Open to every fan — and built for brands.</p>
+          <p class="cer-lead">A public fan-facing event featuring athlete introductions, final face-offs and extensive content capture ahead of fight night.</p>
           <ul class="cer-list">
-            <li><b>Free &amp; open to all.</b> Packed, all-ages crowds.</li>
-            <li><b>Youth &amp; community first.</b> Grassroots reach that grows the sport.</li>
-            <li><b>A brand-ready stage.</b> Signage and content made for social.</li>
-            <li><b>Streamed free.</b> Live on YouTube and the PFL app.</li>
+            <li><b>Free &amp; open to all:</b> Packed, all-ages crowds.</li>
+            <li><b>Youth &amp; community first:</b> Grassroots reach that grows the sport.</li>
+            <li><b>A brand-ready stage:</b> Signage and content made for social.</li>
+            <li><b>Streamed free:</b> Live on YouTube and the PFL app.</li>
           </ul>
         </div>
       </div>
