@@ -5731,9 +5731,9 @@ a.innovation-tile { cursor: pointer; }
 }
 #slide-betting .bet-title .red{ color:var(--pfl-red); }
 #slide-betting .bet-sub{
-  font-family:var(--font-condensed); font-weight:700;
-  font-size:clamp(16px,1.3vw,19px); letter-spacing:.2em; text-transform:uppercase;
-  color:var(--pfl-text-mute,#9fb0c4); max-width:720px; margin:14px 0 0; line-height:1.4;
+  font-family:var(--font-body); font-weight:400;
+  font-size:14.5px; letter-spacing:normal; text-transform:none;
+  color:rgba(255,255,255,.84); max-width:70ch; margin:14px 0 0; line-height:1.55;
 }
 #slide-betting .bet-sub b{ color:#fff; font-weight:700; }
 #slide-betting .bet-head .stat .sv{ font-family:var(--font-display); font-weight:400; font-size:clamp(30px,2.6vw,44px); line-height:1; color:#fff; }
@@ -5927,7 +5927,7 @@ a.innovation-tile { cursor: pointer; }
   font-family:var(--font-display); font-size:clamp(30px,3.2vw,48px);
   line-height:.98; color:#fff; text-transform:uppercase; margin:0 0 12px;
 }
-#explore-faceoffs .eg-body, #explore-eventnight .eg-body{
+#explore-faceoffs .eg-body, #explore-eventnight .eg-body, #explore-origseries .eg-body{
   font-family:var(--font-body); font-size:14.5px; line-height:1.55; color:rgba(255,255,255,.84); max-width:70ch;
 }
 /* video tiles — shared */
@@ -5943,10 +5943,13 @@ a.innovation-tile { cursor: pointer; }
 #explore-eventnight .vid-cell{ aspect-ratio:16/9; }
 .vid-explore .vid-cell video{ width:100%; height:100%; object-fit:cover; display:block; }
 .vid-explore .vid-cell figcaption{
-  position:absolute; left:0; right:0; bottom:0; z-index:2;
-  font-family:var(--font-condensed); font-weight:800; font-size:14px; letter-spacing:.14em;
-  text-transform:uppercase; color:#fff; padding:24px 14px 11px;
-  background:linear-gradient(180deg, transparent, rgba(0,0,0,.85));
+  position:absolute; left:50%; bottom:12px; transform:translateX(-50%); z-index:2;
+  font-family:var(--font-condensed); font-weight:800; font-size:13px; letter-spacing:.12em;
+  text-transform:uppercase; color:#fff; text-align:center; white-space:nowrap;
+  padding:8px 18px; border-radius:10px;
+  background:rgba(5,11,30,.82); border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 6px 18px rgba(0,0,0,.45);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
 }
 .vid-explore .vid-desc{
   font-family:var(--font-body); font-size:13.5px; line-height:1.55; color:rgba(255,255,255,.8);
@@ -7298,9 +7301,9 @@ a.innovation-tile { cursor: pointer; }
       <div class="content-tile" data-explore="faceoffs" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/faceoff_palms.jpg');"><span class="ct-label">FIGHTER FACE-OFFS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="generic" data-ex-title="Ceremonial Weigh-Ins" data-ex-img="https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg" data-ex-body="" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/press_conference.jpg');"><span class="ct-label">CEREMONIAL WEIGH-INS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="eventnight" style="background-image: url('assets/images/event_night_cover.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #050b1e;"><span class="ct-label">EVENT NIGHT</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="highlights" style="background-image: url('assets/images/wsc_highlights_cover.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #050b1e;"><span class="ct-label">AUTOMATED FIGHT HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="highlights" style="background-image: url('assets/images/wsc_highlights_cover.jpg'); background-size: cover; background-position: center;"><span class="ct-label">AUTOMATED FIGHT HIGHLIGHTS</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
       <div class="content-tile" data-explore="origseries" style="background-image: url('assets/images/original_content_cover.jpg');"><span class="ct-label">ORIGINAL CONTENT SERIES</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
-      <div class="content-tile" data-explore="betting" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/event_centre_matchup.jpg');"><span class="ct-label">BETTING DATA</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
+      <div class="content-tile" data-explore="betting" style="background-image: url('https://pfl-2026.github.io/GTM/assets/images/event_centre_matchup.jpg');"><span class="ct-label">OFFICIAL BETTING DATA</span><button class="ct-explore">Explore <span class="ar">›</span></button></div>
     </div>
   </div>
 </section>
@@ -7389,7 +7392,7 @@ a.innovation-tile { cursor: pointer; }
   <div class="bet-head">
     <div class="bet-head-l">
       <h2 class="h-display bet-title">AHEAD OF THE CURVE<br>IN <span class="red">FIGHT BETTING</span></h2>
-      <p class="tag-sub bet-sub">PFL's Official data and content product &mdash; streaming, live odds and in-play markets, all on one screen.</p>
+      <p class="tag-sub bet-sub">PFL's official data and content product &mdash; streaming, live odds and in-play markets, all on one screen.</p>
     </div>
   </div>
 
@@ -7800,7 +7803,7 @@ a.innovation-tile { cursor: pointer; }
       <div class="vid-grid vid-grid-4 hl-grid">
         <div class="vid-col">
           <figure class="vid-cell hl-cell">
-            <video playsinline preload="metadata" poster="https://pfl-2026.github.io/GTM/assets/images/cage_takedown.jpg">
+            <video playsinline preload="metadata" poster="assets/images/highlight_full_fight_still.jpg">
               <source src="assets/video/highlight_full_fight.mp4" type="video/mp4">
             </video>
             <button class="hl-play" aria-label="Play Full Fight Highlights"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#FF0404"/><path d="M32 25 L57 40 L32 55 Z" fill="#fff"/></svg></button>
@@ -7810,7 +7813,7 @@ a.innovation-tile { cursor: pointer; }
         </div>
         <div class="vid-col">
           <figure class="vid-cell hl-cell">
-            <video playsinline preload="metadata" poster="https://pfl-2026.github.io/GTM/assets/images/usman_victory.jpg">
+            <video playsinline preload="metadata" poster="assets/images/highlight_knockouts_still.jpg">
               <source src="assets/video/highlight_knockouts.mp4" type="video/mp4">
             </video>
             <button class="hl-play" aria-label="Play Knockouts"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#FF0404"/><path d="M32 25 L57 40 L32 55 Z" fill="#fff"/></svg></button>
@@ -7820,7 +7823,7 @@ a.innovation-tile { cursor: pointer; }
         </div>
         <div class="vid-col">
           <figure class="vid-cell hl-cell">
-            <video playsinline preload="metadata" poster="https://pfl-2026.github.io/GTM/assets/images/cage_broadcast.jpg">
+            <video playsinline preload="metadata" poster="assets/images/highlight_strike_combos_still.jpg">
               <source src="assets/video/highlight_strike_combos.mp4" type="video/mp4">
             </video>
             <button class="hl-play" aria-label="Play Strike Combinations"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#FF0404"/><path d="M32 25 L57 40 L32 55 Z" fill="#fff"/></svg></button>
@@ -7830,7 +7833,7 @@ a.innovation-tile { cursor: pointer; }
         </div>
         <div class="vid-col">
           <figure class="vid-cell hl-cell">
-            <video playsinline preload="metadata" poster="https://pfl-2026.github.io/GTM/assets/images/pfl_origins.jpg">
+            <video playsinline preload="metadata" poster="assets/images/highlight_archive_still.jpg">
               <source src="assets/video/highlight_archive.mp4" type="video/mp4">
             </video>
             <button class="hl-play" aria-label="Play Archive Footage"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#FF0404"/><path d="M32 25 L57 40 L32 55 Z" fill="#fff"/></svg></button>
@@ -7849,6 +7852,7 @@ a.innovation-tile { cursor: pointer; }
     <div class="eg-inner">
       <div class="eg-kicker">Content Franchise</div>
       <h2 class="eg-title">Original Content Series</h2>
+      <p class="eg-body">PFL's owned storytelling franchises — long-form series and documentary features that build deeper fan connection and keep the brand front-of-mind between events.</p>
       <div class="vid-grid ocs-grid">
         <div class="vid-col">
           <div class="ocs-embed" data-yt="Z56rQeSApBY" role="button" tabindex="0" aria-label="Play Between The Rounds" style="background-image:url('https://i.ytimg.com/vi/Z56rQeSApBY/maxresdefault.jpg');">
