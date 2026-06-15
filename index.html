@@ -6522,19 +6522,9 @@ a.innovation-tile { cursor: pointer; }
         <div class="mc-visual">
           <div class="mc-visual-products">
             <div class="vp-tile"><img src="https://pfl-2026.github.io/GTM/assets/images/combat_cards.png" alt="Trading Cards"></div>
-            <div class="vp-tile vp-tile-yeti">
-              <img class="yeti-product yeti-product-back" src="https://pfl-2026.github.io/GTM/assets/images/yeti_bottle.png" alt="">
-              <img class="yeti-product yeti-product-mid" src="https://pfl-2026.github.io/GTM/assets/images/yeti_bottle.png" alt="">
-              <img class="yeti-product yeti-product-front" src="https://pfl-2026.github.io/GTM/assets/images/yeti_bottle.png" alt="PFL × YETI">
-              <!-- PFL watermark above the cluster -->
-              <img class="yeti-pfl-watermark" src="assets/logos/pfl_main.png" alt="">
-            </div>
+            <div class="vp-tile"><img src="assets/images/pfl_yeti.png" alt="PFL × YETI"></div>
             <div class="vp-tile vp-tile-bright"><img src="https://pfl-2026.github.io/GTM/assets/images/pfl_mobile_game.png" alt="Mobile Game"></div>
-            <div class="vp-tile vp-tile-bright vp-tile-apparel">
-              <img class="apparel-product apparel-product-back" src="https://www.pflmma.shop/cdn/shop/files/WhiteShorts.jpg?v=1769604537&width=600" alt="">
-              <img class="apparel-product apparel-product-mid" src="https://www.pflmma.shop/cdn/shop/files/Untitled-1_0001_PFLMMH0011_B.jpg?v=1750424103&width=600" alt="">
-              <img class="apparel-product apparel-product-front" src="https://www.pflmma.shop/cdn/shop/files/unisex-essential-organic-cruiser-2.0-hoodie-black-front-69fc79929049e.jpg?v=1778153897&width=600" alt="PFL Apparel">
-            </div>
+            <div class="vp-tile vp-tile-bright"><img src="assets/images/pfl_merch.png" alt="PFL Merch"></div>
           </div>
         </div>
         <div class="mc-info">
@@ -6992,7 +6982,7 @@ a.innovation-tile { cursor: pointer; }
               <div class="tc-img" style="background-image: url('assets/images/event07_brussels.jpg')"></div>
               <div class="tc-venue">ING Arena</div>
               <div class="tc-desc">ING Arena · PFL Europe's mid-season main event, broadcast across the continent.</div>
-              <span class="tc-recap disabled">Recap Coming Soon</span>
+              <a href="https://www.youtube.com/watch?v=ZGwAl_Mm6PY" class="tc-recap" target="_blank" rel="noopener">Watch Recap</a>
             </div>
           </article>
 
@@ -9023,6 +9013,98 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   });
 
   show(0);
+})();
+</script>
+<script>
+/* =====================================================================
+   EVENT RECAP SYSTEM (Slide 7 — Global Event Schedule)
+   ---------------------------------------------------------------------
+   TO PUBLISH A RECAP: when an event is finished and its recap is on
+   YouTube, copy the video ID (the part after "watch?v=") and paste it
+   next to that event's number below. The red "Watch Recap" button then
+   appears on that card automatically — same style as every other event.
+   Leave it as '' to show the grey "Recap Coming Soon" placeholder.
+   ===================================================================== */
+(function(){
+  var EVENT_RECAPS = {
+    '01':'Zbiz-XEiPTY',  // Dubai
+    '02':'v4Ym1NFsRUo',  // Madrid
+    '03':'3E_mJ6rQ8rE',  // Pittsburgh
+    '04':'M-yv4A88ZAc',  // Chicago
+    '05':'K4aGldTeTJc',  // Belfast
+    '06':'he9A_lqX1tE',  // Sioux Falls
+    '07':'ZGwAl_Mm6PY',  // Brussels
+    '08':'',             // San Diego
+    '09':'',             // Austin
+    '10':'',             // Washington
+    '11':'',             // Elmont
+    '12':'',             // Charlotte
+    '13':'',             // Tampa
+    '14':'',             // TBD
+    '15':'',             // TBD
+    '16':''              // Lyon
+  };
+
+  /* OPTIONAL — hands-off auto-discovery from YouTube (advanced, OFF by default).
+     Leave both blank to keep it off (recommended for a pitch deck). To turn it
+     on: create a YouTube Data API v3 key in Google Cloud, restrict it to your
+     site's domain, and paste the key + the official PFL channel ID below. When
+     on, any past event with no manual ID above is looked up on that channel and
+     the button appears only if a video whose title matches the city is found.
+     Manual IDs always win. Note: API keys are public in a static page, the API
+     has a daily quota, and auto-matching can occasionally pick the wrong video —
+     manual IDs are the safe, reliable route. */
+  var YT_API_KEY = '';
+  var PFL_CHANNEL_ID = '';
+
+  function key(card){
+    var n=card.querySelector('.tcard-num'); if(!n) return null;
+    var m=(n.textContent||'').match(/(\d+)/); return m ? ('0'+parseInt(m[1],10)).slice(-2) : null;
+  }
+  function setRecap(card, id){
+    var slot=card.querySelector('.tc-recap'); if(!slot) return;
+    var el;
+    if(id){
+      el=document.createElement('a');
+      el.className='tc-recap'; el.href='https://www.youtube.com/watch?v='+id;
+      el.target='_blank'; el.rel='noopener'; el.textContent='Watch Recap';
+    } else {
+      el=document.createElement('span');
+      el.className='tc-recap disabled'; el.textContent='Recap Coming Soon';
+    }
+    slot.parentNode.replaceChild(el, slot);
+  }
+  function isPast(card){
+    var d=card.querySelector('.tcard-date'); if(!d) return false;
+    var p=(d.textContent||'').split('·'); var dt=new Date((p[0]||'').trim()+' '+(p[1]||'').trim());
+    return !isNaN(dt) && dt.getTime() < Date.now();
+  }
+  function autoDiscover(card, k){
+    if(!YT_API_KEY || !PFL_CHANNEL_ID) return;          // off unless configured
+    if((EVENT_RECAPS[k]||'').trim()) return;            // manual ID wins
+    if(!isPast(card)) return;                           // only finished events
+    var cityEl=card.querySelector('.tcard-city'); var city=cityEl?(cityEl.textContent||'').trim():'';
+    if(!city || city==='TBD') return;
+    var url='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3&order=date'
+          + '&channelId='+PFL_CHANNEL_ID+'&q='+encodeURIComponent('PFL '+city+' recap')+'&key='+YT_API_KEY;
+    fetch(url).then(function(r){return r.json();}).then(function(data){
+      if(!data||!data.items) return;
+      var hit=data.items.find(function(it){
+        var t=((it.snippet&&it.snippet.title)||'').toLowerCase();
+        return t.indexOf(city.toLowerCase())>=0 && (t.indexOf('recap')>=0 || t.indexOf('highlights')>=0);
+      });
+      if(hit && hit.id && hit.id.videoId) setRecap(card, hit.id.videoId);
+    }).catch(function(){});
+  }
+
+  function init(){
+    document.querySelectorAll('#slide-tour .tcard').forEach(function(card){
+      var k=key(card); if(!k) return;
+      setRecap(card, (EVENT_RECAPS[k]||'').trim());   // render from config
+      autoDiscover(card, k);                          // optional YouTube lookup
+    });
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
 </script>
 <div class="vlightbox" id="vlightbox" aria-hidden="true">
