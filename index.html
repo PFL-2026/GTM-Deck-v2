@@ -1092,6 +1092,8 @@ button:not(:disabled), [role="button"], a[href], [data-video], [data-explore],
   pointer-events: none;
   z-index: 2;
 }
+/* Consumer Ecosystem product grid keeps full colour — no bottom fade */
+.mc-visual--products::after { display: none; }
 
 /* Card 1 — single hero photo */
 .mc-visual-photo {
@@ -6542,7 +6544,7 @@ a.innovation-tile { cursor: pointer; }
 
       <!-- CARD 3 — CONSUMER ECOSYSTEM -->
       <div class="momentum-card">
-        <div class="mc-visual">
+        <div class="mc-visual mc-visual--products">
           <div class="mc-visual-products">
             <div class="vp-tile"><img src="https://pfl-2026.github.io/GTM/assets/images/combat_cards.png" alt="Trading Cards"></div>
             <div class="vp-tile"><img src="assets/images/pfl_yeti.png" alt="PFL × YETI"></div>
