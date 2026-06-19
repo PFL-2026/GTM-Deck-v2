@@ -5291,6 +5291,61 @@ a.innovation-tile { cursor: pointer; }
 }
 #slide-dist .ro-search-result.no-result:hover { background: transparent; }
 
+/* ===== Explore Metrics button + pop-up (Slide 8) ===== */
+#slide-dist .ro-metrics-btn{
+  display:none; margin-top:14px; align-items:center; gap:9px;
+  background:linear-gradient(135deg,var(--pfl-red),var(--pfl-red-bright));
+  color:#fff; border:none; border-radius:11px; cursor:pointer;
+  font-family:var(--font-condensed); font-weight:800; letter-spacing:.07em; text-transform:uppercase;
+  font-size:15px; padding:13px 20px; position:relative;
+  box-shadow:0 6px 18px rgba(255,4,4,.35);
+  animation:rmbPulse 1.7s ease-out infinite;
+}
+#slide-dist .ro-metrics-btn.show{ display:inline-flex; }
+#slide-dist .ro-metrics-btn:hover{ transform:translateY(-1px); filter:brightness(1.08); }
+.ro-metrics-btn .rmb-pulse{ width:9px;height:9px;border-radius:50%;background:#fff;animation:rmbDot 1.7s ease-out infinite; }
+.ro-metrics-btn .rmb-arrow{ font-size:16px; transition:transform .15s; }
+.ro-metrics-btn:hover .rmb-arrow{ transform:translateX(3px); }
+@keyframes rmbPulse{ 0%{box-shadow:0 6px 18px rgba(255,4,4,.35),0 0 0 0 rgba(255,4,4,.55);} 70%{box-shadow:0 6px 18px rgba(255,4,4,.35),0 0 0 16px rgba(255,4,4,0);} 100%{box-shadow:0 6px 18px rgba(255,4,4,.35),0 0 0 0 rgba(255,4,4,0);} }
+@keyframes rmbDot{ 0%{box-shadow:0 0 0 0 rgba(255,255,255,.85);} 70%{box-shadow:0 0 0 7px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+
+.metrics-modal{ position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:24px; }
+.metrics-modal.open{ display:flex; }
+.metrics-modal .mm-backdrop{ position:absolute; inset:0; background:rgba(2,6,18,.82); backdrop-filter:blur(6px); }
+.mm-card{
+  position:relative; z-index:1; width:min(720px,96vw); max-height:92vh; overflow:auto;
+  background:radial-gradient(120% 80% at 50% 0%, rgba(255,4,4,.10) 0%, rgba(5,11,30,0) 55%), linear-gradient(180deg,#0a1330 0%,#060c1e 100%);
+  border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.mm-card::before{ content:''; position:absolute; top:0;left:0;right:0; height:4px; border-radius:18px 18px 0 0; background:linear-gradient(90deg,var(--pfl-red),var(--pfl-red-bright)); }
+.mm-close{ position:absolute; top:14px; right:14px; width:34px;height:34px;border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#fff; font-size:15px; cursor:pointer; }
+.mm-close:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
+.mm-eyebrow{ font-family:var(--font-condensed); font-weight:700; letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:#5b78c9; }
+.mm-market{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:46px; line-height:1; color:#fff; margin:4px 0; }
+.mm-market .mm-flag{ font-size:34px; }
+.mm-broadcaster{ font-family:var(--font-condensed); font-style:italic; font-weight:600; font-size:17px; color:rgba(255,255,255,.7); margin-bottom:22px; }
+.mm-stats{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:26px; }
+.mm-stat{ background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,4,4,.06)); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:20px 18px; text-align:center; }
+.mm-stat-num{ font-family:var(--font-display); font-size:52px; line-height:.95; color:#fff; }
+.mm-stat-lbl{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:rgba(255,255,255,.6); margin-top:8px; }
+.mm-fighters-title{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.12em; font-size:13px; color:#5b78c9; font-weight:800; margin-bottom:12px; }
+.mm-fighter-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.mm-fighter-grid[data-n="1"]{ grid-template-columns:minmax(0,220px); justify-content:center; }
+.mm-fighter-grid[data-n="2"]{ grid-template-columns:repeat(2,minmax(0,200px)); justify-content:center; }
+.mm-fighter{ background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(5,11,30,.4)); border:1px solid rgba(255,255,255,.10); border-radius:13px; overflow:hidden; display:flex; flex-direction:column; }
+.mm-fighter-stage{ position:relative; height:150px; display:flex; align-items:flex-end; justify-content:center; background:radial-gradient(80% 90% at 50% 100%, rgba(255,4,4,.22), rgba(5,11,30,0) 70%); }
+.mm-fighter-stage img{ height:148px; width:auto; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
+.mm-fighter-ph{ font-family:var(--font-display); font-size:34px; color:rgba(255,255,255,.55); align-self:center; width:74px;height:74px;border-radius:50%; display:flex;align-items:center;justify-content:center; background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,4,4,.18)); border:1px solid rgba(255,255,255,.15); }
+.mm-fighter-name{ font-family:var(--font-condensed); font-weight:700; font-size:14px; color:#fff; text-align:center; padding:10px 8px 4px; line-height:1.15; }
+.mm-fighter-ig{ display:inline-flex; align-items:center; justify-content:center; gap:5px; margin:2px auto 12px; padding:5px 12px; border-radius:20px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#fff; font-family:var(--font-condensed); font-size:12px; font-weight:600; text-decoration:none; }
+.mm-fighter-ig:hover{ background:linear-gradient(135deg,#feda75,#d62976 45%,#962fbf 80%); border-color:transparent; }
+.mm-actions{ display:flex; justify-content:center; margin-top:24px; }
+.mm-download{ display:inline-flex; align-items:center; gap:9px; background:var(--pfl-red); color:#fff; border:none; border-radius:11px; font-family:var(--font-condensed); font-weight:800; letter-spacing:.07em; text-transform:uppercase; font-size:14px; padding:12px 24px; cursor:pointer; }
+.mm-download:hover{ filter:brightness(1.08); transform:translateY(-1px); }
+.mm-foot{ text-align:center; font-family:var(--font-condensed); letter-spacing:.18em; text-transform:uppercase; font-size:10px; color:rgba(255,255,255,.35); margin-top:16px; }
+@media (max-width:560px){ .mm-card{padding:22px;} .mm-market{font-size:34px;} .mm-stat-num{font-size:40px;} .mm-fighter-stage{height:120px;} .mm-fighter-stage img{height:118px;} }
+
 /* ─── RIGHT column: the dominant globe ─── */
 #slide-dist .dist-right {
   position: absolute;
@@ -6288,6 +6343,7 @@ a.innovation-tile { cursor: pointer; }
 .ct-explore .ar{ font-size:14px; }
 
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -7209,6 +7265,7 @@ a.innovation-tile { cursor: pointer; }
         </div>
         <div class="ro-flag" id="roFlag"></div>
       </div>
+      <button class="ro-metrics-btn" id="roMetricsBtn" type="button"><span class="rmb-pulse"></span>Explore Metrics<span class="rmb-arrow">→</span></button>
 
       <div class="dist-stats">
         <div class="dist-stat">
@@ -8667,6 +8724,15 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
       if (roFlag) roFlag.textContent = partner.flag || '\uD83C\uDF10'; // globe emoji fallback
       roCountry.textContent = displayName;
       roBroadcaster.textContent = partner.b || 'No partner yet';
+      // Show the Explore Metrics button only for markets that have metrics data
+      var _mBtn = document.getElementById('roMetricsBtn');
+      if (_mBtn) {
+        if (window.METRICS_BY_MARKET && window.METRICS_BY_MARKET[displayName]) {
+          _mBtn.dataset.market = displayName; _mBtn.classList.add('show');
+        } else {
+          _mBtn.classList.remove('show'); _mBtn.removeAttribute('data-market');
+        }
+      }
     }
 
     function render() { buildGraticule(); buildCountries(); }
@@ -9171,6 +9237,104 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
   document.querySelectorAll('[data-vlb-close]').forEach(function(b){ b.addEventListener('click', closeLB); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('open')) closeLB(); });
+})();
+</script>
+<!-- ===== Broadcaster metrics pop-up (Slide 8) ===== -->
+<div class="metrics-modal" id="metricsModal" aria-hidden="true" role="dialog" aria-label="Broadcast market metrics">
+  <div class="mm-backdrop" data-mm-close></div>
+  <div class="mm-card" id="mmCard">
+    <button class="mm-close" data-mm-close data-mm-noexport aria-label="Close">✕</button>
+    <div class="mm-eyebrow">Broadcast Market</div>
+    <div class="mm-market"><span class="mm-flag" id="mmFlag">🌍</span><span id="mmMarket">Market</span></div>
+    <div class="mm-broadcaster" id="mmBroadcaster">Broadcaster</div>
+    <div class="mm-stats">
+      <div class="mm-stat"><div class="mm-stat-num" id="mmViewers">—</div><div class="mm-stat-lbl">Avg unique viewers / event</div></div>
+      <div class="mm-stat"><div class="mm-stat-num" id="mmSocial">—</div><div class="mm-stat-lbl">Total social following</div></div>
+    </div>
+    <div class="mm-fighters-title">Top PFL Fighters</div>
+    <div class="mm-fighter-grid" id="mmFighters"></div>
+    <div class="mm-actions"><button class="mm-download" id="mmDownload" data-mm-noexport>⤓&nbsp; Download card</button></div>
+    <div class="mm-foot">PFL 2026 Showcase</div>
+  </div>
+</div>
+<script>
+(function(){
+  /* Add a market here to give it an "Explore Metrics" button + pop-up.
+     fighters: { name, img (assets/fighters/...), ig (full Instagram URL) }.
+     Leave img:"" for a placeholder avatar, ig:"" to hide the Instagram link. */
+  window.METRICS_BY_MARKET = {
+    "United Kingdom": { viewers:"150k", social:"1.3m", fighters:[
+      {name:"Dakota Ditcheva", img:"", ig:""},
+      {name:"Paul Hughes", img:"", ig:""},
+      {name:"Fabian Edwards", img:"", ig:""}
+    ]},
+    "United States": { viewers:"275k", social:"5.4m", fighters:[
+      {name:"Corey Anderson", img:"assets/fighters/corey.png", ig:""},
+      {name:"Johnny Eblen", img:"", ig:""},
+      {name:"Sergio Pettis", img:"assets/fighters/sergio_pettis.png", ig:""}
+    ]},
+    "France": { viewers:"200k", social:"850k", fighters:[
+      {name:"Cedric Doumbe", img:"", ig:""},
+      {name:"Taylor Lapilus", img:"", ig:""},
+      {name:"Abdoul Abdouraguimov", img:"", ig:""}
+    ]},
+    "Spain": { viewers:"150k", social:"650k", fighters:[
+      {name:"Costello van Steenis", img:"assets/fighters/costello.png", ig:""},
+      {name:"Gino van Steenis", img:"", ig:""},
+      {name:"Franco Tenaglia", img:"", ig:""}
+    ]},
+    "Portugal": { viewers:"130k", social:"400k", fighters:[
+      {name:"Gustavo Oliveira", img:"", ig:""}
+    ]},
+    "Russia": { viewers:"250k", social:"1.1m", fighters:[
+      {name:"Usman Nurmagomedov", img:"", ig:""},
+      {name:"Vadim Nemkov", img:"", ig:""},
+      {name:"Gadzhi Rabadanov", img:"", ig:""}
+    ]}
+  };
+
+  var modal = document.getElementById('metricsModal');
+  var btn   = document.getElementById('roMetricsBtn');
+  function initials(n){ return n.split(/\s+/).slice(0,2).map(function(w){return w[0]||'';}).join('').toUpperCase(); }
+
+  window.openMetricsModal = function(market){
+    var d = window.METRICS_BY_MARKET[market]; if(!d) return;
+    var roF = document.getElementById('roFlag'), roB = document.getElementById('roBroadcaster');
+    document.getElementById('mmMarket').textContent = market;
+    document.getElementById('mmFlag').textContent = (roF && roF.textContent) || '🌍';
+    document.getElementById('mmBroadcaster').textContent = (roB && roB.textContent) || '';
+    document.getElementById('mmViewers').textContent = d.viewers || '—';
+    document.getElementById('mmSocial').textContent = d.social || '—';
+    var grid = document.getElementById('mmFighters');
+    grid.setAttribute('data-n', d.fighters.length);
+    grid.innerHTML = d.fighters.map(function(f){
+      var media = f.img ? '<img src="'+f.img+'" alt="'+f.name+'">' : '<span class="mm-fighter-ph">'+initials(f.name)+'</span>';
+      var ig = f.ig ? '<a class="mm-fighter-ig" href="'+f.ig+'" target="_blank" rel="noopener">Instagram ↗</a>' : '';
+      return '<div class="mm-fighter"><div class="mm-fighter-stage">'+media+'</div><div class="mm-fighter-name">'+f.name+'</div>'+ig+'</div>';
+    }).join('');
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+  };
+
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  modal.querySelectorAll('[data-mm-close]').forEach(function(el){ el.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) close(); });
+  if(btn){ btn.addEventListener('click', function(){ var m=btn.dataset.market; if(m) window.openMetricsModal(m); }); }
+
+  var dl = document.getElementById('mmDownload');
+  if(dl){ dl.addEventListener('click', function(){
+    var card = document.getElementById('mmCard');
+    if(typeof html2canvas === 'undefined'){ alert('The download tool could not load (it needs an internet connection). Please try again on the published site.'); return; }
+    html2canvas(card, {backgroundColor:'#060c1e', scale:2, useCORS:true, ignoreElements:function(el){ return el.hasAttribute && el.hasAttribute('data-mm-noexport'); }})
+      .then(function(canvas){
+        var a=document.createElement('a');
+        a.download='PFL-'+(document.getElementById('mmMarket').textContent||'market').replace(/\s+/g,'-')+'-metrics.png';
+        a.href=canvas.toDataURL('image/png'); a.click();
+      }).catch(function(){ alert('Sorry — the card image could not be generated.'); });
+  }); }
+
+  // Reflect the market already shown in the readout on load
+  var roC = document.getElementById('roCountry');
+  if(btn && roC && window.METRICS_BY_MARKET[roC.textContent.trim()]){ btn.dataset.market = roC.textContent.trim(); btn.classList.add('show'); }
 })();
 </script>
 </body>
