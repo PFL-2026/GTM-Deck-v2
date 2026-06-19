@@ -5346,8 +5346,9 @@ a.innovation-tile { cursor: pointer; }
 .mm-fighter-grid[data-n="1"]{ grid-template-columns:minmax(0,220px); justify-content:center; }
 .mm-fighter-grid[data-n="2"]{ grid-template-columns:repeat(2,minmax(0,200px)); justify-content:center; }
 .mm-fighter{ background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(5,11,30,.4)); border:1px solid rgba(255,255,255,.10); border-radius:13px; overflow:hidden; display:flex; flex-direction:column; }
-.mm-fighter-stage{ position:relative; height:150px; display:flex; align-items:flex-end; justify-content:center; background:radial-gradient(80% 90% at 50% 100%, rgba(255,4,4,.22), rgba(5,11,30,0) 70%); }
-.mm-fighter-stage img{ height:148px; width:auto; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
+.mm-fighter-stage{ position:relative; height:150px; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; background:radial-gradient(80% 90% at 50% 100%, rgba(255,4,4,.22), rgba(5,11,30,0) 70%); }
+.mm-fighter-flag{ position:absolute; inset:0; background-size:cover; background-position:center; background-repeat:no-repeat; opacity:.22; z-index:0; pointer-events:none; -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 95%); mask-image:linear-gradient(180deg,#000 60%,transparent 95%); }
+.mm-fighter-stage img{ position:relative; z-index:1; height:148px; width:auto; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
 .mm-fighter-ph{ font-family:var(--font-display); font-size:34px; color:rgba(255,255,255,.55); align-self:center; width:74px;height:74px;border-radius:50%; display:flex;align-items:center;justify-content:center; background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,4,4,.18)); border:1px solid rgba(255,255,255,.15); }
 .mm-fighter-name{ font-family:var(--font-condensed); font-weight:700; font-size:14px; color:#fff; text-align:center; padding:10px 8px 4px; line-height:1.15; }
 .mm-fighter-ig{ display:inline-flex; align-items:center; justify-content:center; gap:6px; margin:4px auto 12px; padding:6px 13px; border-radius:20px; background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5 100%); border:none; color:#fff; font-family:var(--font-condensed); font-size:12.5px; font-weight:700; text-decoration:none; box-shadow:0 3px 10px rgba(214,41,118,.35); }
@@ -9330,6 +9331,9 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     document.getElementById('mmBroadcaster').textContent = (roB && roB.textContent) || '';
     document.getElementById('mmViewers').textContent = d.viewers || '—';
     document.getElementById('mmSocial').textContent = d.social || '—';
+    var MARKET_FLAG = {"United Kingdom":"gb","United States":"us","France":"fr","Spain":"es","Portugal":"pt","Russia":"ru"};
+    var fcode = MARKET_FLAG[market] || '';
+    var flagBg = fcode ? ' style="background-image:url(assets/flags/'+fcode+'.png)"' : '';
     var grid = document.getElementById('mmFighters');
     grid.setAttribute('data-n', d.fighters.length);
     grid.innerHTML = d.fighters.map(function(f){
@@ -9339,7 +9343,7 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
       if (f.ig) ig = '<a class="mm-fighter-ig" href="'+f.ig+'" target="_blank" rel="noopener">'+IG_SVG+'<span>'+label+'</span></a>';
       else if (f.followers) ig = '<span class="mm-fighter-ig is-static">'+IG_SVG+'<span>'+f.followers+'</span></span>';
       else ig = '';
-      return '<div class="mm-fighter"><div class="mm-fighter-stage">'+media+'</div><div class="mm-fighter-name">'+f.name+'</div>'+ig+'</div>';
+      return '<div class="mm-fighter"><div class="mm-fighter-stage"><span class="mm-fighter-flag" aria-hidden="true"'+flagBg+'></span>'+media+'</div><div class="mm-fighter-name">'+f.name+'</div>'+ig+'</div>';
     }).join('');
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
   };
