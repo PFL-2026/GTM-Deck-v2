@@ -5333,16 +5333,17 @@ a.innovation-tile { cursor: pointer; }
 .mm-broadcaster{ font-family:var(--font-condensed); font-style:italic; font-weight:600; font-size:17px; color:#fff; margin:0; }
 .mm-bc-label{ color:rgba(255,255,255,.45); font-weight:600; font-style:normal; }
 .mm-stats{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:26px; }
-.mm-stat{ background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:18px 18px 20px; text-align:center; }
+.mm-stat{ position:relative; background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:18px 18px 20px; text-align:center; }
 .mm-stat--broadcast{ border-top:2px solid rgba(255,4,4,.55); }
 .mm-stat--social{ border-top:2px solid rgba(150,47,191,.6); }
-.mm-stat-tagwrap{ display:inline-flex; align-items:center; gap:8px; margin-bottom:12px; }
-.mm-tv{ font-size:17px; line-height:1; }
+.mm-stat-head{ display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px; }
+.mm-tv{ font-size:16px; line-height:1; }
 .mm-stat-tag{ display:inline-flex; align-items:center; font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.12em; font-size:11px; font-weight:800; padding:3px 11px; border-radius:20px; }
 .mm-stat--broadcast .mm-stat-tag{ background:rgba(255,4,4,.16); color:#ff9a9a; border:1px solid rgba(255,4,4,.4); }
-.mm-socials{ display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:26px; margin-bottom:12px; }
-.mm-social-ic{ width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); }
-.mm-social-ic svg{ width:13px; height:13px; fill:#fff; }
+.mm-stat--social .mm-stat-tag{ background:rgba(150,47,191,.18); color:#cbb0ff; border:1px solid rgba(150,47,191,.5); }
+.mm-stat-icons--side{ display:flex; flex-direction:row; align-items:center; justify-content:center; gap:13px; margin-top:14px; }
+.mm-social-ic{ display:inline-flex; align-items:center; justify-content:center; }
+.mm-social-ic svg{ width:16px; height:16px; fill:rgba(255,255,255,.8); }
 .mm-stat-num{ font-family:var(--font-display); font-size:52px; line-height:.95; color:#fff; }
 .mm-stat-lbl{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:rgba(255,255,255,.6); margin-top:8px; }
 .mm-fighters-title{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.12em; font-size:13px; color:#5b78c9; font-weight:800; margin-bottom:12px; }
@@ -9270,14 +9271,16 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     </div>
     <div class="mm-stats">
       <div class="mm-stat mm-stat--broadcast">
-        <div class="mm-stat-tagwrap"><span class="mm-tv">📺</span><span class="mm-stat-tag">Broadcast</span></div>
+        <div class="mm-stat-head"><span class="mm-stat-tag">Broadcast</span></div>
         <div class="mm-stat-num" id="mmViewers">—</div>
         <div class="mm-stat-lbl">Avg unique viewers / event</div>
+        <div class="mm-stat-icons mm-stat-icons--side"><span class="mm-tv">📺</span></div>
       </div>
       <div class="mm-stat mm-stat--social">
-        <div class="mm-socials" id="mmSocials"></div>
+        <div class="mm-stat-head"><span class="mm-stat-tag">Social</span></div>
         <div class="mm-stat-num" id="mmSocial">—</div>
         <div class="mm-stat-lbl">Total social following</div>
+        <div class="mm-socials mm-stat-icons mm-stat-icons--side" id="mmSocials"></div>
       </div>
     </div>
     <div class="mm-fighters-title">Top PFL Fighters</div>
