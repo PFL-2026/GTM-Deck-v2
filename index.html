@@ -5118,7 +5118,7 @@ a.innovation-tile { cursor: pointer; }
   display: grid;
   grid-template-columns: 44% 56%;
   align-items: start;
-  padding: 46vh 3vw 12vh 6vw;
+  padding: 34vh 3vw 8vh 6vw;
   box-sizing: border-box;
   gap: 1.5vw;
 }
@@ -5158,15 +5158,19 @@ a.innovation-tile { cursor: pointer; }
 /* ─── Broadcaster readout — matches reference: left text + big flag right ─── */
 #slide-dist .dist-readout {
   display: flex;
-  gap: 1.4rem;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   background: linear-gradient(135deg, rgba(10, 26, 74, 0.92) 0%, rgba(5, 14, 40, 0.92) 100%);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 12px;
   padding: 1.5rem 1.8rem;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
-  min-height: 132px;
+}
+#slide-dist .ro-readout-row {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 120px;
 }
 #slide-dist .ro-body {
   flex: 1;
@@ -5301,7 +5305,7 @@ a.innovation-tile { cursor: pointer; }
   box-shadow:0 6px 18px rgba(255,4,4,.35);
   animation:rmbPulse 1.7s ease-out infinite;
 }
-#slide-dist .ro-metrics-btn.show{ display:inline-flex; }
+#slide-dist .ro-metrics-btn.show{ display:inline-flex; align-self:flex-start; }
 #slide-dist .ro-metrics-btn:hover{ transform:translateY(-1px); filter:brightness(1.08); }
 .ro-metrics-btn .rmb-pulse{ width:9px;height:9px;border-radius:50%;background:#fff;animation:rmbDot 1.7s ease-out infinite; }
 .ro-metrics-btn .rmb-arrow{ font-size:16px; transition:transform .15s; }
@@ -5321,12 +5325,20 @@ a.innovation-tile { cursor: pointer; }
 .mm-card::before{ content:''; position:absolute; top:0;left:0;right:0; height:4px; border-radius:18px 18px 0 0; background:linear-gradient(90deg,var(--pfl-red),var(--pfl-red-bright)); }
 .mm-close{ position:absolute; top:14px; right:14px; width:34px;height:34px;border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#fff; font-size:15px; cursor:pointer; }
 .mm-close:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
-.mm-eyebrow{ font-family:var(--font-condensed); font-weight:700; letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:#5b78c9; }
-.mm-market{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:46px; line-height:1; color:#fff; margin:4px 0; }
+.mm-head{ border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:18px; margin-bottom:22px; }
+.mm-eyebrow{ display:inline-flex; align-items:center; gap:9px; font-family:var(--font-condensed); font-weight:800; letter-spacing:.2em; text-transform:uppercase; font-size:13px; color:#7e9be0; }
+.mm-eyebrow::before{ content:''; width:22px; height:3px; background:linear-gradient(90deg,var(--pfl-red),var(--pfl-red-bright)); border-radius:2px; }
+.mm-market{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:48px; line-height:1; color:#fff; margin:8px 0 6px; }
 .mm-market .mm-flag{ font-size:34px; }
-.mm-broadcaster{ font-family:var(--font-condensed); font-style:italic; font-weight:600; font-size:17px; color:rgba(255,255,255,.7); margin-bottom:22px; }
+.mm-broadcaster{ font-family:var(--font-condensed); font-style:italic; font-weight:600; font-size:17px; color:#fff; margin:0; }
+.mm-bc-label{ color:rgba(255,255,255,.45); font-weight:600; font-style:normal; }
 .mm-stats{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:26px; }
-.mm-stat{ background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,4,4,.06)); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:20px 18px; text-align:center; }
+.mm-stat{ background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:18px 18px 20px; text-align:center; }
+.mm-stat--broadcast{ border-top:2px solid rgba(255,4,4,.55); }
+.mm-stat--social{ border-top:2px solid rgba(150,47,191,.6); }
+.mm-stat-tag{ display:inline-flex; align-items:center; gap:5px; font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.12em; font-size:11px; font-weight:800; padding:3px 11px; border-radius:20px; margin-bottom:12px; }
+.mm-stat--broadcast .mm-stat-tag{ background:rgba(255,4,4,.16); color:#ff9a9a; border:1px solid rgba(255,4,4,.4); }
+.mm-stat--social .mm-stat-tag{ background:rgba(150,47,191,.18); color:#cbb0ff; border:1px solid rgba(150,47,191,.5); }
 .mm-stat-num{ font-family:var(--font-display); font-size:52px; line-height:.95; color:#fff; }
 .mm-stat-lbl{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:rgba(255,255,255,.6); margin-top:8px; }
 .mm-fighters-title{ font-family:var(--font-condensed); text-transform:uppercase; letter-spacing:.12em; font-size:13px; color:#5b78c9; font-weight:800; margin-bottom:12px; }
@@ -5338,8 +5350,10 @@ a.innovation-tile { cursor: pointer; }
 .mm-fighter-stage img{ height:148px; width:auto; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
 .mm-fighter-ph{ font-family:var(--font-display); font-size:34px; color:rgba(255,255,255,.55); align-self:center; width:74px;height:74px;border-radius:50%; display:flex;align-items:center;justify-content:center; background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,4,4,.18)); border:1px solid rgba(255,255,255,.15); }
 .mm-fighter-name{ font-family:var(--font-condensed); font-weight:700; font-size:14px; color:#fff; text-align:center; padding:10px 8px 4px; line-height:1.15; }
-.mm-fighter-ig{ display:inline-flex; align-items:center; justify-content:center; gap:5px; margin:2px auto 12px; padding:5px 12px; border-radius:20px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#fff; font-family:var(--font-condensed); font-size:12px; font-weight:600; text-decoration:none; }
-.mm-fighter-ig:hover{ background:linear-gradient(135deg,#feda75,#d62976 45%,#962fbf 80%); border-color:transparent; }
+.mm-fighter-ig{ display:inline-flex; align-items:center; justify-content:center; gap:6px; margin:4px auto 12px; padding:6px 13px; border-radius:20px; background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5 100%); border:none; color:#fff; font-family:var(--font-condensed); font-size:12.5px; font-weight:700; text-decoration:none; box-shadow:0 3px 10px rgba(214,41,118,.35); }
+.mm-fighter-ig svg{ width:14px; height:14px; fill:#fff; flex-shrink:0; }
+.mm-fighter-ig:hover{ filter:brightness(1.08); transform:translateY(-1px); }
+.mm-fighter-ig.is-static{ cursor:default; }
 .mm-actions{ display:flex; justify-content:center; margin-top:24px; }
 .mm-download{ display:inline-flex; align-items:center; gap:9px; background:var(--pfl-red); color:#fff; border:none; border-radius:11px; font-family:var(--font-condensed); font-weight:800; letter-spacing:.07em; text-transform:uppercase; font-size:14px; padding:12px 24px; cursor:pointer; }
 .mm-download:hover{ filter:brightness(1.08); transform:translateY(-1px); }
@@ -7244,26 +7258,26 @@ a.innovation-tile { cursor: pointer; }
   <!-- Title block, top-left, matching other slides -->
   <div class="dist-title-block">
     <h2 class="h-display dist-title">CARRIED ACROSS<br><span class="red">THE WORLD</span></h2>
-    <p class="dist-lede">PFL events reach more than 190 territories through a dedicated network of broadcast partners — covering 1.2 billion households across every populated continent.</p>
   </div>
 
   <div class="dist-wrap">
 
     <!-- LEFT: readout + stats -->
     <div class="dist-left">
-      <!-- Search box sits just above the broadcast readout -->
-      <div class="ro-search-wrap" id="roSearchWrap">
-        <input type="text" class="ro-search" id="roSearch" placeholder="Search markets…" autocomplete="off" spellcheck="false">
-        <div class="ro-search-results" id="roSearchResults"></div>
-      </div>
-      <!-- Bigger broadcaster readout — sticks on click, updates on hover -->
+      <!-- Broadcaster readout — search now lives inside the box -->
       <div class="dist-readout" id="distReadout">
-        <div class="ro-body">
-          <div class="ro-label">Broadcast Market</div>
-          <div class="ro-country" id="roCountry">United States</div>
-          <div class="ro-partner-line"><span class="ro-broadcaster" id="roBroadcaster">ESPN</span></div>
+        <div class="ro-search-wrap" id="roSearchWrap">
+          <input type="text" class="ro-search" id="roSearch" placeholder="Search markets…" autocomplete="off" spellcheck="false">
+          <div class="ro-search-results" id="roSearchResults"></div>
         </div>
-        <div class="ro-flag" id="roFlag"></div>
+        <div class="ro-readout-row">
+          <div class="ro-body">
+            <div class="ro-label">Broadcast Market</div>
+            <div class="ro-country" id="roCountry">United States</div>
+            <div class="ro-partner-line"><span class="ro-broadcaster" id="roBroadcaster">ESPN</span></div>
+          </div>
+          <div class="ro-flag" id="roFlag"></div>
+        </div>
       </div>
       <button class="ro-metrics-btn" id="roMetricsBtn" type="button"><span class="rmb-pulse"></span>Explore Metrics<span class="rmb-arrow">→</span></button>
 
@@ -9244,12 +9258,22 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   <div class="mm-backdrop" data-mm-close></div>
   <div class="mm-card" id="mmCard">
     <button class="mm-close" data-mm-close data-mm-noexport aria-label="Close">✕</button>
-    <div class="mm-eyebrow">Broadcast Market</div>
-    <div class="mm-market"><span class="mm-flag" id="mmFlag">🌍</span><span id="mmMarket">Market</span></div>
-    <div class="mm-broadcaster" id="mmBroadcaster">Broadcaster</div>
+    <div class="mm-head">
+      <div class="mm-eyebrow">Market Reach Metrics</div>
+      <div class="mm-market"><span class="mm-flag" id="mmFlag">🌍</span><span id="mmMarket">Market</span></div>
+      <div class="mm-broadcaster"><span class="mm-bc-label">Broadcast partner —</span> <span id="mmBroadcaster">Broadcaster</span></div>
+    </div>
     <div class="mm-stats">
-      <div class="mm-stat"><div class="mm-stat-num" id="mmViewers">—</div><div class="mm-stat-lbl">Avg unique viewers / event</div></div>
-      <div class="mm-stat"><div class="mm-stat-num" id="mmSocial">—</div><div class="mm-stat-lbl">Total social following</div></div>
+      <div class="mm-stat mm-stat--broadcast">
+        <div class="mm-stat-tag">📺 Broadcast</div>
+        <div class="mm-stat-num" id="mmViewers">—</div>
+        <div class="mm-stat-lbl">Avg unique viewers / event</div>
+      </div>
+      <div class="mm-stat mm-stat--social">
+        <div class="mm-stat-tag">📣 Social</div>
+        <div class="mm-stat-num" id="mmSocial">—</div>
+        <div class="mm-stat-lbl">Total social following</div>
+      </div>
     </div>
     <div class="mm-fighters-title">Top PFL Fighters</div>
     <div class="mm-fighter-grid" id="mmFighters"></div>
@@ -9264,32 +9288,32 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
      Leave img:"" for a placeholder avatar, ig:"" to hide the Instagram link. */
   window.METRICS_BY_MARKET = {
     "United Kingdom": { viewers:"150k", social:"1.3m", fighters:[
-      {name:"Dakota Ditcheva", img:"", ig:""},
-      {name:"Paul Hughes", img:"", ig:""},
-      {name:"Fabian Edwards", img:"", ig:""}
+      {name:"Dakota Ditcheva", img:"assets/fighters/dakota_ditcheva.png", ig:"https://www.instagram.com/dakotaditcheva/", followers:"372k"},
+      {name:"Paul Hughes", img:"assets/fighters/paul_hughes.png", ig:"https://www.instagram.com/paulhughesmma/", followers:"200k"},
+      {name:"Fabian Edwards", img:"assets/fighters/fabian_edwards.png", ig:"https://www.instagram.com/fabian_edwardsmma/", followers:"87k"}
     ]},
     "United States": { viewers:"275k", social:"5.4m", fighters:[
-      {name:"Corey Anderson", img:"assets/fighters/corey.png", ig:""},
-      {name:"Johnny Eblen", img:"", ig:""},
-      {name:"Sergio Pettis", img:"assets/fighters/sergio_pettis.png", ig:""}
+      {name:"Corey Anderson", img:"assets/fighters/corey.png", ig:"https://www.instagram.com/coreya_mma/", followers:"135k"},
+      {name:"Johnny Eblen", img:"assets/fighters/johnny_eblen.png", ig:"https://www.instagram.com/johnnyeblen/", followers:"60k"},
+      {name:"Sergio Pettis", img:"assets/fighters/sergio_pettis.png", ig:"https://www.instagram.com/sergiopettis/", followers:"226k"}
     ]},
     "France": { viewers:"200k", social:"850k", fighters:[
-      {name:"Cedric Doumbe", img:"", ig:""},
-      {name:"Taylor Lapilus", img:"", ig:""},
-      {name:"Abdoul Abdouraguimov", img:"", ig:""}
+      {name:"Cedric Doumbe", img:"assets/fighters/cedric_doumbe.png", ig:"https://www.instagram.com/cedricdoumbe/", followers:"1m"},
+      {name:"Taylor Lapilus", img:"assets/fighters/taylor_lapilus.png", ig:"https://www.instagram.com/taylor_d.i_lapilus/", followers:"61k"},
+      {name:"Abdoul Abdouraguimov", img:"assets/fighters/abdoul_abdouraguimov.png", ig:"https://www.instagram.com/lazykingmma/", followers:"89.2k"}
     ]},
     "Spain": { viewers:"150k", social:"650k", fighters:[
-      {name:"Costello van Steenis", img:"assets/fighters/costello.png", ig:""},
-      {name:"Gino van Steenis", img:"", ig:""},
-      {name:"Franco Tenaglia", img:"", ig:""}
+      {name:"Costello van Steenis", img:"assets/fighters/costello.png", ig:"https://www.instagram.com/costello_mma/", followers:"52k"},
+      {name:"Gino van Steenis", img:"assets/fighters/gino_van_steenis.png", ig:"https://www.instagram.com/ginovansteenis_/", followers:"9k"},
+      {name:"Franco Tenaglia", img:"assets/fighters/franco_tenaglia.png", ig:"https://www.instagram.com/fran_tenaglia/", followers:"579k"}
     ]},
     "Portugal": { viewers:"130k", social:"400k", fighters:[
-      {name:"Gustavo Oliveira", img:"", ig:""}
+      {name:"Gustavo Oliveira", img:"assets/fighters/gustavo_oliveira.png", ig:"https://www.instagram.com/gustavooliveiramma/", followers:"47k"}
     ]},
     "Russia": { viewers:"250k", social:"1.1m", fighters:[
-      {name:"Usman Nurmagomedov", img:"", ig:""},
-      {name:"Vadim Nemkov", img:"", ig:""},
-      {name:"Gadzhi Rabadanov", img:"", ig:""}
+      {name:"Usman Nurmagomedov", img:"assets/fighters/usman_nurmagomedov.png", ig:"https://www.instagram.com/usman_nurmagomedov/", followers:"2m"},
+      {name:"Vadim Nemkov", img:"assets/fighters/vadim_nemkov.png", ig:"https://www.instagram.com/vadimnemkov/", followers:"188k"},
+      {name:"Gadzhi Rabadanov", img:"assets/fighters/gadzhi_rabadanov.png", ig:"https://www.instagram.com/gadzhi_rabadanov/", followers:"182k"}
     ]}
   };
 
@@ -9297,6 +9321,7 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   var btn   = document.getElementById('roMetricsBtn');
   function initials(n){ return n.split(/\s+/).slice(0,2).map(function(w){return w[0]||'';}).join('').toUpperCase(); }
 
+  var IG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.62c-3.15 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.86 2.86 0 0 0-.69-1.06 2.86 2.86 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.59-.07-4.74-.07Zm0 2.76a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 1.62a3.68 3.68 0 1 0 0 7.36 3.68 3.68 0 0 0 0-7.36Zm5.48-.16a1.24 1.24 0 1 1-2.48 0 1.24 1.24 0 0 1 2.48 0Z"/></svg>';
   window.openMetricsModal = function(market){
     var d = window.METRICS_BY_MARKET[market]; if(!d) return;
     var roF = document.getElementById('roFlag'), roB = document.getElementById('roBroadcaster');
@@ -9309,7 +9334,11 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     grid.setAttribute('data-n', d.fighters.length);
     grid.innerHTML = d.fighters.map(function(f){
       var media = f.img ? '<img src="'+f.img+'" alt="'+f.name+'">' : '<span class="mm-fighter-ph">'+initials(f.name)+'</span>';
-      var ig = f.ig ? '<a class="mm-fighter-ig" href="'+f.ig+'" target="_blank" rel="noopener">Instagram ↗</a>' : '';
+      var label = f.followers ? f.followers : 'Instagram';
+      var ig;
+      if (f.ig) ig = '<a class="mm-fighter-ig" href="'+f.ig+'" target="_blank" rel="noopener">'+IG_SVG+'<span>'+label+'</span></a>';
+      else if (f.followers) ig = '<span class="mm-fighter-ig is-static">'+IG_SVG+'<span>'+f.followers+'</span></span>';
+      else ig = '';
       return '<div class="mm-fighter"><div class="mm-fighter-stage">'+media+'</div><div class="mm-fighter-name">'+f.name+'</div>'+ig+'</div>';
     }).join('');
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
@@ -9324,12 +9353,22 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   if(dl){ dl.addEventListener('click', function(){
     var card = document.getElementById('mmCard');
     if(typeof html2canvas === 'undefined'){ alert('The download tool could not load (it needs an internet connection). Please try again on the published site.'); return; }
-    html2canvas(card, {backgroundColor:'#060c1e', scale:2, useCORS:true, ignoreElements:function(el){ return el.hasAttribute && el.hasAttribute('data-mm-noexport'); }})
-      .then(function(canvas){
-        var a=document.createElement('a');
-        a.download='PFL-'+(document.getElementById('mmMarket').textContent||'market').replace(/\s+/g,'-')+'-metrics.png';
-        a.href=canvas.toDataURL('image/png'); a.click();
-      }).catch(function(){ alert('Sorry — the card image could not be generated.'); });
+    // Expand the card so the WHOLE thing is captured — no scroll, no clipping
+    var prevMax = card.style.maxHeight, prevOvf = card.style.overflow;
+    card.style.maxHeight = 'none'; card.style.overflow = 'visible';
+    var restore = function(){ card.style.maxHeight = prevMax; card.style.overflow = prevOvf; };
+    html2canvas(card, {
+      backgroundColor:'#060c1e', scale:2, useCORS:true,
+      width: card.offsetWidth, height: card.scrollHeight,
+      windowWidth: document.documentElement.scrollWidth,
+      windowHeight: document.documentElement.scrollHeight,
+      ignoreElements:function(el){ return el.hasAttribute && el.hasAttribute('data-mm-noexport'); }
+    }).then(function(canvas){
+      restore();
+      var a=document.createElement('a');
+      a.download='PFL-'+(document.getElementById('mmMarket').textContent||'market').replace(/\s+/g,'-')+'-metrics.png';
+      a.href=canvas.toDataURL('image/png'); a.click();
+    }).catch(function(){ restore(); alert('Sorry — the card image could not be generated.'); });
   }); }
 
   // Reflect the market already shown in the readout on load
