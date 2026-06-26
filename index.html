@@ -28,8 +28,8 @@
 <meta property="og:title" content="PFL 2026 Showcase">
 <meta property="og:description" content="Professional Fighters League 2026 — Global Overview & Partnership Opportunity">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/logos/pfl_social.png">
-<meta property="og:image:secure_url" content="assets/logos/pfl_social.png">
+<meta property="og:image" content="https://pfl-2026.github.io/GTM-Deck-v2/assets/logos/pfl_social.png">
+<meta property="og:image:secure_url" content="https://pfl-2026.github.io/GTM-Deck-v2/assets/logos/pfl_social.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="240">
 <meta property="og:image:height" content="240">
@@ -38,7 +38,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PFL 2026 Showcase">
 <meta name="twitter:description" content="Professional Fighters League 2026 — Global Overview & Partnership Opportunity">
-<meta name="twitter:image" content="assets/logos/pfl_social.png">
+<meta name="twitter:image" content="https://pfl-2026.github.io/GTM-Deck-v2/assets/logos/pfl_social.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5045,6 +5045,16 @@ a.innovation-tile { cursor: pointer; }
 }
 #slide-tour .tc-recap.disabled::before { display: none; }
 
+/* Recap video popup — embedded YouTube player */
+#ytModal{ position:fixed; inset:0; z-index:4000; display:none; align-items:center; justify-content:center; padding:4vh 4vw; }
+#ytModal.open{ display:flex; }
+#ytModal .yt-backdrop{ position:absolute; inset:0; background:rgba(3,7,20,.88); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+#ytModal .yt-frame-wrap{ position:relative; width:min(1100px,100%); }
+#ytModal .yt-frame{ position:relative; width:100%; padding-top:56.25%; background:#000; border-radius:14px; overflow:hidden; box-shadow:0 30px 90px rgba(0,0,0,.7); border:1px solid rgba(255,255,255,.12); }
+#ytModal .yt-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+#ytModal .yt-close{ position:absolute; top:-46px; right:0; width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:#fff; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+#ytModal .yt-close:hover{ background:var(--pfl-red); border-color:var(--pfl-red); }
+
 @keyframes tlPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 4, 4, 0.55); }
   50%      { box-shadow: 0 0 0 10px rgba(255, 4, 4, 0); }
@@ -9390,6 +9400,39 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
   // Reflect the market already shown in the readout on load
   var roC = document.getElementById('roCountry');
   if(btn && roC && window.METRICS_BY_MARKET[roC.textContent.trim()]){ btn.dataset.market = roC.textContent.trim(); btn.classList.add('show'); }
+})();
+</script>
+<!-- RECAP VIDEO POPUP — embedded YouTube player (with sound) -->
+<div id="ytModal" aria-hidden="true">
+  <div class="yt-backdrop" data-yt-close></div>
+  <div class="yt-frame-wrap">
+    <button class="yt-close" data-yt-close aria-label="Close recap">✕</button>
+    <div class="yt-frame" id="ytFrame"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var modal=document.getElementById('ytModal'), frame=document.getElementById('ytFrame');
+  if(!modal||!frame) return;
+  function getId(url){
+    if(!url) return '';
+    var m=url.match(/[?&]v=([\w-]{6,})/) || url.match(/youtu\.be\/([\w-]{6,})/) || url.match(/\/embed\/([\w-]{6,})/);
+    return m ? m[1] : '';
+  }
+  function open(id){
+    frame.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="PFL Recap" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+  }
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); frame.innerHTML=''; }
+  document.addEventListener('click', function(e){
+    var a=e.target.closest('.tc-recap');
+    if(a && !a.classList.contains('disabled')){
+      var id=getId(a.getAttribute('href'));
+      if(id){ e.preventDefault(); e.stopPropagation(); open(id); return; }
+    }
+    if(e.target.closest('[data-yt-close]')) close();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) close(); });
 })();
 </script>
 </body>
