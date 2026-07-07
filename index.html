@@ -9198,8 +9198,10 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
    TO PUBLISH A RECAP: when an event is finished and its recap is on
    YouTube, copy the video ID (the part after "watch?v=") and paste it
    next to that event's number below. The red "Watch Recap" button then
-   appears on that card automatically — same style as every other event.
-   Leave it as '' to show the grey "Recap Coming Soon" placeholder.
+   plays that video in the popup automatically — with sound.
+   Leave it as '' and once the event date has passed, the button instead
+   links to a YouTube search for "PFL [City] Main Card Highlights" (opens
+   in a new tab) so it always works. Add the exact ID to embed it properly.
    ===================================================================== */
 (function(){
   var EVENT_RECAPS = {
@@ -9241,10 +9243,25 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     var slot=card.querySelector('.tc-recap'); if(!slot) return;
     var el;
     if(id){
+      // specific recap video → opens in the embedded popup player (with sound)
       el=document.createElement('a');
       el.className='tc-recap'; el.href='https://www.youtube.com/watch?v='+id;
       el.target='_blank'; el.rel='noopener'; el.textContent='Watch Recap';
+    } else if(isPast(card)){
+      // event has happened but no exact video is set yet → link to a YouTube
+      // search for that event's highlights so the button still works
+      var cityEl=card.querySelector('.tcard-city'); var city=cityEl?(cityEl.textContent||'').trim():'';
+      if(city && city.toUpperCase()!=='TBD'){
+        el=document.createElement('a');
+        el.className='tc-recap';
+        el.href='https://www.youtube.com/results?search_query='+encodeURIComponent('PFL '+city+' Main Card Highlights');
+        el.target='_blank'; el.rel='noopener'; el.textContent='Watch Recap';
+      } else {
+        el=document.createElement('span');
+        el.className='tc-recap disabled'; el.textContent='Recap Coming Soon';
+      }
     } else {
+      // still upcoming → placeholder
       el=document.createElement('span');
       el.className='tc-recap disabled'; el.textContent='Recap Coming Soon';
     }
