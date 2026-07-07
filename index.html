@@ -8309,13 +8309,52 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
     tlScroller.addEventListener('scroll', updateScrollButtons);
     requestAnimationFrame(updateScrollButtons);
 
+    // ===== Auto-update the timeline from today's date =====
+    // Single source of truth: each card's date decides completed / live / next / upcoming.
+    // Progress counter, fills, globe markers and the default scroll all follow from this.
+    function refreshTimelineByDate(){
+      var cards = [].slice.call(document.querySelectorAll('#slide-tour .tcard'));
+      if(!cards.length) return;
+      var today = new Date(); today.setHours(0,0,0,0);
+      function parseDate(card){
+        var el=card.querySelector('.tcard-date'); if(!el) return null;
+        var p=(el.textContent||'').split('·');
+        var d=new Date((p[0]||'').trim()+' '+(p[1]||'').trim());
+        if(isNaN(d)) return null; d.setHours(0,0,0,0); return d;
+      }
+      function countdown(days){
+        if(days<=1) return 'Tomorrow';
+        if(days<7) return days+' days away';
+        if(days<45){ var w=Math.round(days/7); return w+(w===1?' week away':' weeks away'); }
+        var m=Math.round(days/30); return m+(m===1?' month away':' months away');
+      }
+      var nextChosen=false, completed=0;
+      cards.forEach(function(card){
+        var st=card.querySelector('.tcard-status'), cd=card.querySelector('.tcard-countdown');
+        if(cd) cd.classList.remove('live');
+        var d=parseDate(card);
+        if(!d){ card.setAttribute('data-status','upcoming'); if(st) st.textContent='Upcoming'; if(cd) cd.textContent='Date TBD'; return; }
+        var days=Math.round((d-today)/86400000);
+        if(days<0){ card.setAttribute('data-status','completed'); if(st) st.textContent='Completed'; if(cd) cd.textContent='Completed'; completed++; }
+        else if(days===0){ card.setAttribute('data-status','live'); if(st) st.textContent='Live Now'; if(cd){ cd.textContent='Happening Now'; cd.classList.add('live'); } }
+        else if(!nextChosen){ nextChosen=true; card.setAttribute('data-status','next'); if(st) st.textContent='Next Up'; if(cd) cd.textContent=countdown(days); }
+        else { card.setAttribute('data-status','upcoming'); if(st) st.textContent='Upcoming'; if(cd) cd.textContent=countdown(days); }
+      });
+      var total=cards.length, pct=(completed/total*100).toFixed(2)+'%';
+      var counter=document.getElementById('tpCounter'); if(counter) counter.textContent=completed;
+      var f1=document.getElementById('tpFill'), f2=document.getElementById('tlLineFill');
+      if(f1) f1.style.width=pct; if(f2) f2.style.width=pct;
+      window.__tourTargetPct=pct;
+    }
+    refreshTimelineByDate();
+
     // Auto-animate progress bar when the slide comes into view
     const tourSection = document.getElementById('slide-tour');
     const tpFill = document.getElementById('tpFill');
     const tlLineFill = document.getElementById('tlLineFill');
     if (tourSection && tpFill && tlLineFill) {
       // Reset to 0 initially, animate to target when in view
-      const target = '43.75%';
+      const target = window.__tourTargetPct || '43.75%';
       tpFill.style.width = '0%';
       tlLineFill.style.width = '0%';
 
@@ -8326,11 +8365,12 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
               tpFill.style.width = target;
               tlLineFill.style.width = target;
             });
-            // Auto-scroll to put the latest COMPLETED event in view + highlight it
-            const completedCards = tlScroller.querySelectorAll('.tcard[data-status="completed"]');
-            const latestCompleted = completedCards[completedCards.length - 1];
-            if (latestCompleted) {
-              const offset = latestCompleted.offsetLeft - tlScroller.clientWidth / 2 + latestCompleted.offsetWidth / 2;
+            // Auto-scroll to the current focus: live event, else the next upcoming one
+            const focusCard = tlScroller.querySelector('.tcard[data-status="live"]')
+                           || tlScroller.querySelector('.tcard[data-status="next"]')
+                           || (function(){ const c=tlScroller.querySelectorAll('.tcard[data-status="completed"]'); return c[c.length-1]; })();
+            if (focusCard) {
+              const offset = focusCard.offsetLeft - tlScroller.clientWidth / 2 + focusCard.offsetWidth / 2;
               setTimeout(() => {
                 tlScroller.scrollTo({ left: offset, behavior: 'smooth' });
               }, 600);
@@ -8379,11 +8419,19 @@ window.WORLD_COUNTRIES = [{"id":"004","name":"Afghanistan","polys":[[[66.5,37.4]
         return { x, y, visible: cosC >= 0 };
       }
 
+      // Pull each event's up-to-date status from its (date-driven) card
+      const cardStatus = {};
+      document.querySelectorAll('#slide-tour .tcard').forEach(function(cd){
+        const nm=((cd.querySelector('.tcard-num')||{}).textContent)||'';
+        const mm=nm.match(/(\d+)/);
+        if(mm) cardStatus[parseInt(mm[1],10)] = cd.getAttribute('data-status') || '';
+      });
       let html = '';
       TOUR_CITIES.forEach(c => {
         const p = project(c.lat, c.lng);
         if (!p.visible) return;
-        html += `<g class="tm-marker" data-event="${c.num}" data-status="${c.status}">
+        const st = cardStatus[c.num] || c.status;
+        html += `<g class="tm-marker" data-event="${c.num}" data-status="${st}">
                    <circle class="tm-ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="9"></circle>
                    <circle class="tm-dot"  cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5"></circle>
                  </g>`;
